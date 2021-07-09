@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_paddings.dart';
-import 'package:synt/until/font_style.dart';
+import 'package:synt/until/app_font_style.dart';
 
 class DeviceWidget extends StatelessWidget {
   const DeviceWidget({Key? key}) : super(key: key);

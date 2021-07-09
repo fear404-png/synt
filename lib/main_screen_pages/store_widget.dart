@@ -5,27 +5,44 @@ import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
 class StoreWidget extends StatelessWidget {
-  const StoreWidget({Key? key}) : super(key: key);
+  final _storeItems = [
+    _CategoryNameWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+    _StoreItemWidget(),
+  ];
+
+  StoreWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView(
-        children: [
-          _CategoryNameWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-          _StoreItemWidget(),
-        ],
-      ),
-    );
+    return ListView.builder(
+        itemCount: _storeItems.length,
+        itemBuilder: (context, index) {
+          return _storeItems[index];
+        });
+    // return ListView(
+    //     children: [
+    //       _CategoryNameWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //       _StoreItemWidget(),
+    //     ],
+    //   );
   }
 }
 

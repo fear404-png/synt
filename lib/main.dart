@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "synt",
       theme: ThemeData(
-          appBarTheme: AppBarTheme(backgroundColor: AppColors.background),
+          appBarTheme: const AppBarTheme(backgroundColor: AppColors.background),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               backgroundColor: AppColors.background,
               selectedItemColor: AppColors.accent,

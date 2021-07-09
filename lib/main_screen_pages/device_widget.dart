@@ -12,7 +12,6 @@ class DeviceWidget extends StatelessWidget {
     return Padding(
       padding: AppPaddings.defaultPadding,
       child: ListView(
-        physics: NeverScrollableScrollPhysics(),
         children: [
           _SystemBar(textStyle: AppFontStyle.textStyleHeader),
           AppPaddings.dafaultSizedBoxHeight,
@@ -79,50 +78,49 @@ class _SystemMonitorList extends StatelessWidget {
         AppPaddings.dafaultSizedBoxWidth,
         Expanded(
             child: Container(
-          padding: AppPaddings.defaultPadding,
+          padding: EdgeInsets.symmetric(horizontal: 10),
           decoration: AppContainers.containerBorder,
           height: 75,
-          child: SingleChildScrollView(
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "NETWORK: 15 Mbps/s",
-                      style: _textStyle,
-                    ),
-                    Text(
-                      "STATUS: STABLE",
-                      style: _textStyle,
-                    ),
-                    Text(
-                      "WARNINGS: 0",
-                      style: _textStyle,
-                    ),
-                    Text(
-                      "ERRORS: 0",
-                      style: _textStyle,
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                        width: 70,
-                        height: 30,
-                        decoration: AppContainers.containerBorder,
-                        child: Center(
-                          child: Text(
-                            "MORE",
-                            style: _textStyleHeader,
-                          ),
-                        )),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "NETWORK: 15 Mbps/s",
+                    style: _textStyle,
                   ),
-                )
-              ],
-            ),
+                  Text(
+                    "STATUS: STABLE",
+                    style: _textStyle,
+                  ),
+                  Text(
+                    "WARNINGS: 0",
+                    style: _textStyle,
+                  ),
+                  Text(
+                    "ERRORS: 0",
+                    style: _textStyle,
+                  )
+                ],
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                      width: 70,
+                      height: 30,
+                      decoration: AppContainers.containerBorder,
+                      child: Center(
+                        child: Text(
+                          "MORE",
+                          style: _textStyleHeader,
+                        ),
+                      )),
+                ),
+              )
+            ],
           ),
         ))
       ],

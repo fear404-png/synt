@@ -36,22 +36,18 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pageController = new PageController(initialPage: _selectedTab);
   }
 
   void onSelectedTap(int index) {
     pageController.animateToPage(index,
-        // Устанавливаем время эффекта перехода страницы
-        duration: const Duration(milliseconds: 300),
-        // Устанавливаем эффект конвертации
-        curve: Curves.ease);
+        duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 
   void onPageChanged(int page) {
     setState(() {
-      this._selectedTab = _selectedTab;
+      this._selectedTab = page;
     });
   }
 
@@ -62,7 +58,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       print(index);
     });
     pageController.animateToPage(index,
-        duration: const Duration(milliseconds: 300), curve: Curves.easeOutSine);
+        duration: const Duration(milliseconds: 100), curve: Curves.easeOutSine);
   }
 
   @override
@@ -99,17 +95,22 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
             backgroundColor: AppColors.background,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.mobile_screen_share), label: "synt",
-            backgroundColor: AppColors.background, ),
+            icon: Icon(Icons.mobile_screen_share),
+            label: "synt",
+            backgroundColor: AppColors.background,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.wifi_protected_setup_sharp), label: "Processes",
-            backgroundColor: AppColors.background,),
+            icon: Icon(Icons.wifi_protected_setup_sharp),
+            label: "Processes",
+            backgroundColor: AppColors.background,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.message,
-              ),
-              label: "Messages",
-            backgroundColor: AppColors.background,),
+            icon: Icon(
+              Icons.message,
+            ),
+            label: "Messages",
+            backgroundColor: AppColors.background,
+          ),
         ],
         onTap: onTap,
         currentIndex: _selectedTab,

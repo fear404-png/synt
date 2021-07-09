@@ -24,6 +24,7 @@ class StoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        physics: ClampingScrollPhysics(),
         itemCount: _storeItems.length,
         itemBuilder: (context, index) {
           return _storeItems[index];

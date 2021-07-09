@@ -12,7 +12,7 @@ class DeviceWidget extends StatelessWidget {
     return Padding(
       padding: AppPaddings.defaultPadding,
       child: ListView(
-        
+        physics: NeverScrollableScrollPhysics(),
         children: [
           _SystemBar(textStyle: AppFontStyle.textStyleHeader),
           AppPaddings.dafaultSizedBoxHeight,

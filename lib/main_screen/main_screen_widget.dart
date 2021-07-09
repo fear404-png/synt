@@ -83,6 +83,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
       //     mainScreenPages: _mainScreenPages, selectedTab: _selectedTab),
 
       bottomNavigationBar: BottomNavigationBar(
+        iconSize: 30,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.device_hub_sharp),

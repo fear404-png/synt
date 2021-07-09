@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:synt/main_screen_pages/device_widget.dart';
 import 'package:synt/main_screen_pages/messages_widget.dart';
@@ -29,7 +30,6 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     if (index == _selectedTab) return;
     setState(() {
       _selectedTab = index;
-      print(index);
     });
   }
 
@@ -44,7 +44,11 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         ),
         backgroundColor: AppColors.background,
       ),
-      body: _mainScreenPages[_selectedTab],
+
+      // body: _mainScreenPages[_selectedTab],
+      body: _PagesWidget(
+          mainScreenPages: _mainScreenPages, selectedTab: _selectedTab),
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,
         items: [
@@ -70,5 +74,31 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         onTap: onSelectTab,
       ),
     );
+  }
+}
+
+class _PagesWidget extends StatelessWidget {
+  const _PagesWidget({
+    Key? key,
+    required List<Widget> mainScreenPages,
+    required int selectedTab,
+  })  : _mainScreenPages = mainScreenPages,
+        _selectedTab = selectedTab,
+        super(key: key);
+
+  final List<Widget> _mainScreenPages;
+  final int _selectedTab;
+
+  @override
+  Widget build(BuildContext context) {
+    return PageTransitionSwitcher(
+        transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
+            FadeThroughTransition(
+              animation: primaryAnimation,
+              secondaryAnimation: secondaryAnimation,
+              child: child,
+              fillColor: AppColors.background,
+            ),
+        child: _mainScreenPages[_selectedTab]);
   }
 }

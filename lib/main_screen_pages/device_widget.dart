@@ -2,34 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_paddings.dart';
+import 'package:synt/until/font_style.dart';
 
 class DeviceWidget extends StatelessWidget {
   const DeviceWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const _textStyle = TextStyle(color: AppColors.accent, fontSize: 12);
-    const _textStyleHeader = TextStyle(color: AppColors.accent);
-
     return Padding(
       padding: AppPaddings.defaultPadding,
       child: ListView(
         children: [
-          _SystemBar(textStyle: _textStyleHeader),
+          _SystemBar(textStyle: AppFontStyle.textStyleHeader),
           AppPaddings.dafaultSizedBoxHeight,
-          _SystemMonitorLabel(textStyle: _textStyleHeader),
-          AppPaddings.dafaultSizedBoxHeight,
-          _SystemMonitorList(
-              textStyle: _textStyle, textStyleHeader: _textStyleHeader),
+          _SystemMonitorLabel(textStyle: AppFontStyle.textStyleHeader),
           AppPaddings.dafaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: _textStyle, textStyleHeader: _textStyleHeader),
+              textStyle: AppFontStyle.textStyle,
+              textStyleHeader: AppFontStyle.textStyleHeader),
           AppPaddings.dafaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: _textStyle, textStyleHeader: _textStyleHeader),
+              textStyle: AppFontStyle.textStyle,
+              textStyleHeader: AppFontStyle.textStyleHeader),
           AppPaddings.dafaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: _textStyle, textStyleHeader: _textStyleHeader),
+              textStyle: AppFontStyle.textStyle,
+              textStyleHeader: AppFontStyle.textStyleHeader),
+          AppPaddings.dafaultSizedBoxHeight,
+          _SystemMonitorList(
+              textStyle: AppFontStyle.textStyle,
+              textStyleHeader: AppFontStyle.textStyleHeader),
         ],
       ),
     );

@@ -4,7 +4,14 @@ import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
-class StoreWidget extends StatelessWidget {
+class StoreWidget extends StatefulWidget {
+  StoreWidget({Key? key}) : super(key: key);
+
+  @override
+  State<StoreWidget> createState() => _StoreWidgetState();
+}
+
+class _StoreWidgetState extends State<StoreWidget> {
   final _storeItems = [
     _CategoryNameWidget(),
     _StoreItemWidget(),
@@ -18,8 +25,6 @@ class StoreWidget extends StatelessWidget {
     _StoreItemWidget(),
     _StoreItemWidget(),
   ];
-
-  StoreWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +79,7 @@ class _StoreItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppPaddings.defaultPadding,
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
         children: [
           Container(

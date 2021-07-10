@@ -21,7 +21,11 @@ class MyApp extends StatelessWidget {
               backgroundColor: AppColors.background,
               selectedItemColor: AppColors.accent,
               unselectedItemColor: AppColors.accent.withAlpha(200))),
-      home: MainScreenWidget(),
+      // home: MainScreenWidget(),
+      routes: {
+        "/main_screen": (context) => MainScreenWidget(),
+      },
+      initialRoute: "/main_screen",
     );
   }
 }

@@ -1,15 +1,16 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:synt/theme/app_colors.dart';
 
 abstract class AppSvg {
-  static SvgPicture storeItemFirst = SvgPicture.asset(
-    "assets/svg/store_item_first.svg",
-    color: AppColors.accent,
-    height: 100,
-  );
-  static SvgPicture storeItemSecond = SvgPicture.asset(
-    "assets/svg/store_item_second.svg",
-    color: AppColors.accent,
-    height: 100,
-  );
+  static final SvgPicture arrowTopLeft =
+      SvgPicture.asset("assets/svg/arrow_top_left.svg");
+  static final SvgPicture arrowTopRight =
+      SvgPicture.asset("assets/svg/arrow_top_right.svg");
+  static final SvgPicture arrowBottomLeft =
+      SvgPicture.asset("assets/svg/arrow_bottom_left.svg");
+  static final SvgPicture arrowBottomRight =
+      SvgPicture.asset("assets/svg/arrow_bottom_right.svg");
 }

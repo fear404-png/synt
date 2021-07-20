@@ -120,29 +120,3 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   }
 }
 
-// class _PagesWidget extends StatelessWidget {
-//   const _PagesWidget({
-//     Key? key,
-//     required List<Widget> mainScreenPages,
-//     required int selectedTab,
-//   })  : _mainScreenPages = mainScreenPages,
-//         _selectedTab = selectedTab,
-//         super(key: key);
-
-//   final List<Widget> _mainScreenPages;
-//   final int _selectedTab;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // return PageTransitionSwitcher(
-//     //     transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
-//     //         FadeThroughTransition(
-//     //           animation: primaryAnimation,
-//     //           secondaryAnimation: secondaryAnimation,
-//     //           child: child,
-//     //           fillColor: AppColors.background,
-//     //         ),
-//     //     child: _mainScreenPages[_selectedTab]);
-
-//   }
-// }

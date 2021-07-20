@@ -5,87 +5,215 @@ import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 import 'package:synt/until/app_svg.dart';
 
-class StoreWidget extends StatefulWidget {
-  StoreWidget({Key? key}) : super(key: key);
-
-  @override
-  State<StoreWidget> createState() => _StoreWidgetState();
-}
-
-class _StoreWidgetState extends State<StoreWidget> {
-  final _storeItems = [
-    _CategoryNameWidget(),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-    _StoreItemWidget(
-      title: "ANTIVIRUS",
-      description:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti",
-      price: 200,
-      icon: Icon(Icons.favorite_rounded, size: 100),
-    ),
-  ];
+class StoreWidget extends StatelessWidget {
+  const StoreWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        physics: ClampingScrollPhysics(),
-        itemCount: _storeItems.length,
-        itemBuilder: (context, index) {
-          return _storeItems[index];
-        });
+    return Column(
+      children: [
+        _StoreTabsWidget(),
+        AppPaddings.defaultSizedBoxHeight,
+        Expanded(
+          child: Stack(
+            children: [
+              _StoreBackground(),
+              _StoreItemsWidget(),
+              _StoreVignette()
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
 
-class _CategoryNameWidget extends StatelessWidget {
-  const _CategoryNameWidget({
+class _StoreTabsWidget extends StatelessWidget {
+  const _StoreTabsWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(child: _StoreTabWidget(label: "SOFTWARE")),
+        AppPaddings.defaultSizedBoxWidth,
+        Expanded(child: _StoreTabWidget(label: "HARDWARE")),
+      ],
+    );
+  }
+}
+
+class _StoreTabWidget extends StatelessWidget {
+  final String label;
+  const _StoreTabWidget({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: AppPaddings.defaultPadding,
+        decoration: AppContainersDecoration.containerBorder,
+        child: Center(
+          child: Text(
+            "$label",
+            style: AppTextStyle.textStyleHeader,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StoreVignette extends StatelessWidget {
+  const _StoreVignette({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(2),
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [Colors.transparent, AppColors.background]),
+        ),
+      ),
+    );
+  }
+}
+
+class _StoreBackground extends StatelessWidget {
+  const _StoreBackground({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [AppColors.background, AppColors.accent]),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(2),
+          child: Container(
+            color: AppColors.background,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StoreItemsWidget extends StatelessWidget {
+  final List<Widget> _listItems = [
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+    _StoreItemWidget(
+      icon: Icon(
+        Icons.computer,
+        color: AppColors.accent,
+      ),
+      title: "REAPER",
+      description: "Fuck your computer",
+      price: "1200",
+    ),
+  ];
+  _StoreItemsWidget({
     Key? key,
   }) : super(key: key);
 
@@ -93,137 +221,73 @@ class _CategoryNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppPaddings.defaultPadding,
-      child: Container(
-        decoration: AppContainers.containerBorder,
-        height: 30,
-        child: Center(
-            child: Text("SOFTWARE", style: AppFontStyle.textStyleHeader)),
-      ),
+      child: ListView.builder(
+          physics: ClampingScrollPhysics(),
+          itemCount: _listItems.length,
+          itemBuilder: (context, index) {
+            return _listItems[index];
+          }),
     );
   }
 }
 
 class _StoreItemWidget extends StatelessWidget {
+  final Icon icon;
+  final String title;
+  final String description;
+  final String price;
   const _StoreItemWidget({
     Key? key,
-    required String title,
-    required String description,
-    required int price,
-    required Icon icon,
-  })  : _title = title,
-        _description = description,
-        _price = price,
-        _icon = icon,
-        super(key: key);
-
-  final String _title;
-  final String _description;
-  final int _price;
-  final Icon? _icon;
+    required this.icon,
+    required this.title,
+    required this.description,
+    required this.price,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          AppSvg.storeItemFirst,
-          AppPaddings.dafaultSizedBoxWidth,
-          Container(
-            height: 100,
-            width: 100,
-            color: AppColors.accent,
-            child: Center(child: _icon),
+          StoreContainer(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            width: 45,
+            height: 45,
+            child: icon as Widget,
           ),
-          AppPaddings.dafaultSizedBoxWidth,
+          AppPaddings.defaultSizedBoxWidth,
           Expanded(
-              child: Container(
-            color: AppColors.accent,
-            height: 100,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  color: AppColors.background,
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  color: AppColors.background,
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  color: AppColors.background,
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Container(
-                  color: AppColors.background,
-                  height: 10,
-                ),
-              ],
-            ),
-          )),
-          Stack(
-            overflow: Overflow.visible,
-            children: [
-              AppSvg.storeItemSecond,
-              Positioned(
-                top: 10,
-                right: -5,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  decoration: AppContainers.containerBorderWithBg,
-                  height: 25,
-                  child: Center(
-                    child: Text(
-                      "$_price BTC",
-                      style: AppFontStyle.textStyleHeader,
+              child: StoreContainer(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "$title",
+                          style: AppTextStyle.textStyleHeader,
+                          maxLines: 1,
+                        ),
+                        Text(
+                          "$description",
+                          style: AppTextStyle.textStyle,
+                          maxLines: 1,
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  height: 45)),
+          AppPaddings.defaultSizedBoxWidth,
+          StoreContainer(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              child: Text(
+                "$price BTC",
+                style: AppTextStyle.textStyleHeader,
               ),
-              Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Container(
-                    width: 150,
-                    child: Text(
-                      "$_title",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                      maxLines: 1,
-                    ),
-                  )),
-              Positioned(
-                  top: 38,
-                  left: 10,
-                  child: Container(
-                    width: 260,
-                    child: Text(
-                      "$_description",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                      ),
-                      maxLines: 3,
-                    ),
-                  ))
-            ],
-          ),
-          AppPaddings.dafaultSizedBoxWidth,
+              width: 100,
+              height: 45)
         ],
       ),
     );

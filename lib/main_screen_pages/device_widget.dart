@@ -13,25 +13,25 @@ class DeviceWidget extends StatelessWidget {
       padding: AppPaddings.defaultPadding,
       child: ListView(
         children: [
-          _SystemBar(textStyle: AppFontStyle.textStyleHeader),
-          AppPaddings.dafaultSizedBoxHeight,
-          _SystemMonitorLabel(textStyle: AppFontStyle.textStyleHeader),
-          AppPaddings.dafaultSizedBoxHeight,
+          _SystemBar(textStyle: AppTextStyle.textStyleHeader),
+          AppPaddings.defaultSizedBoxHeight,
+          _SystemMonitorLabel(textStyle: AppTextStyle.textStyleHeader),
+          AppPaddings.defaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: AppFontStyle.textStyle,
-              textStyleHeader: AppFontStyle.textStyleHeader),
-          AppPaddings.dafaultSizedBoxHeight,
+              textStyle: AppTextStyle.textStyle,
+              textStyleHeader: AppTextStyle.textStyleHeader),
+          AppPaddings.defaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: AppFontStyle.textStyle,
-              textStyleHeader: AppFontStyle.textStyleHeader),
-          AppPaddings.dafaultSizedBoxHeight,
+              textStyle: AppTextStyle.textStyle,
+              textStyleHeader: AppTextStyle.textStyleHeader),
+          AppPaddings.defaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: AppFontStyle.textStyle,
-              textStyleHeader: AppFontStyle.textStyleHeader),
-          AppPaddings.dafaultSizedBoxHeight,
+              textStyle: AppTextStyle.textStyle,
+              textStyleHeader: AppTextStyle.textStyleHeader),
+          AppPaddings.defaultSizedBoxHeight,
           _SystemMonitorList(
-              textStyle: AppFontStyle.textStyle,
-              textStyleHeader: AppFontStyle.textStyleHeader),
+              textStyle: AppTextStyle.textStyle,
+              textStyleHeader: AppTextStyle.textStyleHeader),
         ],
       ),
     );
@@ -57,7 +57,7 @@ class _SystemMonitorList extends StatelessWidget {
         Container(
           height: 75,
           width: 75,
-          decoration: AppContainers.containerBorder,
+          decoration: AppContainersDecoration.containerBorder,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -75,11 +75,11 @@ class _SystemMonitorList extends StatelessWidget {
             ),
           ),
         ),
-        AppPaddings.dafaultSizedBoxWidth,
+        AppPaddings.defaultSizedBoxWidth,
         Expanded(
             child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
-          decoration: AppContainers.containerBorder,
+          decoration: AppContainersDecoration.containerBorder,
           height: 75,
           child: Row(
             children: [
@@ -111,7 +111,7 @@ class _SystemMonitorList extends StatelessWidget {
                   child: Container(
                       width: 70,
                       height: 30,
-                      decoration: AppContainers.containerBorder,
+                      decoration: AppContainersDecoration.containerBorder,
                       child: Center(
                         child: Text(
                           "MORE",
@@ -140,7 +140,7 @@ class _SystemMonitorLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppContainers.containerBorder,
+      decoration: AppContainersDecoration.containerBorder,
       height: 30,
       child: Center(
         child: Text(
@@ -166,7 +166,7 @@ class _SystemBar extends StatelessWidget {
     return Row(
       children: [
         Container(
-          decoration: AppContainers.containerBorder,
+          decoration: AppContainersDecoration.containerBorder,
           width: 90,
           height: 90,
           child: Center(
@@ -177,12 +177,12 @@ class _SystemBar extends StatelessWidget {
             ),
           ),
         ),
-        AppPaddings.dafaultSizedBoxWidth,
+        AppPaddings.defaultSizedBoxWidth,
         Expanded(
             child: Container(
           padding: AppPaddings.defaultPadding,
           height: 90,
-          decoration: AppContainers.containerBorder,
+          decoration: AppContainersDecoration.containerBorder,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

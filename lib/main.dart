@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:synt/main_screen/main_screen_widget.dart';
+import 'package:synt/pages/main_screen_widget.dart';
 import 'package:synt/theme/app_colors.dart';
 
 void main() {

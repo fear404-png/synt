@@ -1,12 +1,13 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:synt/main_screen_pages/device_widget.dart';
-import 'package:synt/main_screen_pages/messages_widget.dart';
-import 'package:synt/main_screen_pages/processes_widget.dart';
-import 'package:synt/main_screen_pages/store_widget.dart';
-import 'package:synt/main_screen_pages/synt_widget.dart';
+
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/theme/app_info.dart';
+
+import 'device_widget.dart';
+import 'messages_widget.dart';
+import 'processes_widget.dart';
+import 'store_widget.dart';
+import 'synt_widget.dart';
 
 class MainScreenWidget extends StatefulWidget {
   MainScreenWidget({Key? key}) : super(key: key);
@@ -26,13 +27,6 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     ProcessesWidget(),
     MessagesWidget()
   ];
-
-  // void onSelectTab(int index) {
-  //   if (index == _selectedTab) return;
-  //   setState(() {
-  //     _selectedTab = index;
-  //   });
-  // }
 
   @override
   void initState() {
@@ -119,4 +113,3 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     );
   }
 }
-

@@ -20,18 +20,6 @@ class StoreItemsWidget extends StatelessWidget {
     ),
   ];
 
-  final List<Widget> _listItemsHard = [
-    StoreItemWidget(
-      icon: Icon(
-        Icons.computer,
-        color: AppColors.accent,
-      ),
-      title: "RAM 8 GB",
-      description: "Ez",
-      price: "1200",
-    ),
-  ];
-
   StoreItemsWidget({
     Key? key,
   }) : super(key: key);
@@ -39,7 +27,6 @@ class StoreItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StoreBloc, StoreState>(builder: (context, state) {
-      print(state);
       if (state is StoreShowSoftware) {
         return Padding(
           padding: AppPaddings.defaultPadding,
@@ -55,14 +42,34 @@ class StoreItemsWidget extends StatelessWidget {
         return Padding(
           padding: AppPaddings.defaultPadding,
           child: ListView.builder(
-              physics: ClampingScrollPhysics(),
-              itemCount: _listItemsHard.length,
+              itemCount:
+                  state.itemsHardwareRam.length + state.itemsHardwareRam.length,
               itemBuilder: (context, index) {
-                return _listItemsHard[index];
+                if (index <= state.itemsHardwareRam.length - 1) {
+                  return StoreItemWidget(
+                    icon: state.itemsHardwareRam[index].icon,
+                    title: "RAM ${state.itemsHardwareRam[index].ram} gb",
+                    description: "${state.itemsHardwareRam[index].description}",
+                    price: "${state.itemsHardwareRam[index].price}",
+                  );
+                } else {
+                  return StoreItemWidget(
+                    icon: state
+                        .itemsHardwareMemory[
+                            index - state.itemsHardwareRam.length]
+                        .icon,
+                    title:
+                        "Memory ${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].memory} GB",
+                    description:
+                        "${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].description}",
+                    price:
+                        "${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].price}",
+                  );
+                }
               }),
         );
       }
-      return Center(
+      return const Center(
         child: Text(
           "page not found",
           style: TextStyle(color: AppColors.accent),

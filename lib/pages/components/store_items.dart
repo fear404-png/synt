@@ -9,7 +9,7 @@ import 'store_item.dart';
 
 class StoreItemsWidget extends StatelessWidget {
   final List<Widget> _listItemsSoft = [
-    StoreItemWidget(
+    const StoreItemWidget(
       icon: Icon(
         Icons.computer,
         color: AppColors.accent,
@@ -60,8 +60,10 @@ class StoreItemsWidget extends StatelessWidget {
                         .icon,
                     title:
                         "Memory ${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].memory} GB",
-                    description:
-                        "${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].description}",
+                    description: state
+                        .itemsHardwareMemory[
+                            index - state.itemsHardwareRam.length]
+                        .description,
                     price:
                         "${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].price}",
                   );

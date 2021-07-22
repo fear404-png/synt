@@ -38,6 +38,7 @@ class StoreItemsWidget extends StatelessWidget {
               }),
         );
       }
+
       if (state is StoreShowHardware) {
         return Padding(
           padding: AppPaddings.defaultPadding,
@@ -71,6 +72,7 @@ class StoreItemsWidget extends StatelessWidget {
               }),
         );
       }
+
       return const Center(
         child: Text(
           "page not found",

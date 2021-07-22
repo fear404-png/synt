@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/bloc/store_bloc.dart';
 
 import 'package:synt/until/app_paddings.dart';
 
@@ -13,16 +15,23 @@ class StoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        StoreTabsWidget(),
-        AppPaddings.defaultSizedBoxHeight,
-        Expanded(
-          child: Stack(
-            children: [StoreBackground(), StoreItemsWidget(), StoreVignette()],
+    return BlocProvider(
+      create: (context) => StoreBloc()..add(ShowSoftware()),
+      child: Column(
+        children: [
+          StoreTabsWidget(),
+          AppPaddings.defaultSizedBoxHeight,
+          Expanded(
+            child: Stack(
+              children: [
+                StoreBackground(),
+                StoreItemsWidget(),
+                StoreVignette()
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

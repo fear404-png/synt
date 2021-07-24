@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/theme/app_info.dart';
@@ -62,55 +64,62 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: const Text(
-          AppInfo.appName,
-          style: TextStyle(color: AppColors.accent),
-        ),
+    return BlocProvider(
+      create: (context) => AppbarBloc(),
+      child: Scaffold(
         backgroundColor: AppColors.background,
-      ),
-      body: PageView(
-        children: _mainScreenPages,
-        scrollDirection: Axis.horizontal,
-        controller: pageController,
-        onPageChanged: onPageChanged,
-      ),
-      //создание нижней навигации
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.device_hub_sharp),
-            label: "Device",
-            backgroundColor: AppColors.background,
+        appBar: AppBar(
+          title: BlocBuilder<AppbarBloc, AppbarState>(
+            builder: (context, state) {
+              return Text(
+                "${state.btc} BTC",
+                style: const TextStyle(color: AppColors.accent),
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: "Store",
-            backgroundColor: AppColors.background,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mobile_screen_share),
-            label: "synt",
-            backgroundColor: AppColors.background,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.wifi_protected_setup_sharp),
-            label: "Processes",
-            backgroundColor: AppColors.background,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.message,
+          backgroundColor: AppColors.background,
+        ),
+        body: PageView(
+          children: _mainScreenPages,
+          scrollDirection: Axis.horizontal,
+          controller: pageController,
+          onPageChanged: onPageChanged,
+        ),
+        //создание нижней навигации
+        bottomNavigationBar: BottomNavigationBar(
+          iconSize: 30,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.device_hub_sharp),
+              label: "Device",
+              backgroundColor: AppColors.background,
             ),
-            label: "DEBUG",
-            backgroundColor: AppColors.background,
-          ),
-        ],
-        onTap: onTap,
-        currentIndex: _selectedTab,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.store),
+              label: "Store",
+              backgroundColor: AppColors.background,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.mobile_screen_share),
+              label: "synt",
+              backgroundColor: AppColors.background,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.wifi_protected_setup_sharp),
+              label: "Processes",
+              backgroundColor: AppColors.background,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.message,
+              ),
+              label: "DEBUG",
+              backgroundColor: AppColors.background,
+            ),
+          ],
+          onTap: onTap,
+          currentIndex: _selectedTab,
+        ),
       ),
     );
   }

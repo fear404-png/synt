@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 import 'package:synt/blocs/device_bloc/device_bloc.dart';
+import 'package:synt/data/player.dart';
 
 import 'items/memory.dart';
 import 'items/ram.dart';

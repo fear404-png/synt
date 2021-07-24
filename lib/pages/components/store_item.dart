@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
+import 'package:synt/data/player.dart';
 
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
@@ -11,9 +13,10 @@ class StoreItemWidget extends StatelessWidget {
   final Icon icon;
   final String title;
   final String description;
-  final String price;
+  int price = 100;
   final Object type;
-  const StoreItemWidget({
+
+  StoreItemWidget({
     Key? key,
     required this.icon,
     required this.title,
@@ -32,14 +35,14 @@ class StoreItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             width: 45,
             height: 45,
-            child: icon as Widget,
+            child: icon,
           ),
           AppPaddings.defaultSizedBoxWidth,
           Expanded(
               child: StoreContainer(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -58,24 +61,27 @@ class StoreItemWidget extends StatelessWidget {
                   ),
                   height: 45)),
           AppPaddings.defaultSizedBoxWidth,
-          BlocProvider(
-            create: (context) => StoreBloc(),
-            child: GestureDetector(
-              onTap: () {
+          GestureDetector(
+            onTap: () {
+              if (Player.btc >= price) {
                 BlocProvider.of<StoreBloc>(context).add(BuyItem(type));
-              },
-              child: const StoreContainer(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  child: Text(
-                    "1 BTC",
-                    style: AppTextStyle.textStyleHeader,
-                  ),
-                  width: 100,
-                  height: 45),
-            ),
-          )
+                BlocProvider.of<AppbarBloc>(context).add(RemoveBtc(price));
+              }
+            },
+            child: StoreContainer(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                child: Text(
+                  "$price BTC",
+                  style: AppTextStyle.textStyle,
+                  maxLines: 1,
+                ),
+                width: 100,
+                height: 45),
+          ),
         ],
       ),
     );
   }
 }
+
+class AddBtc {}

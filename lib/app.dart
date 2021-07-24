@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "synt",
+      title: "100 btc",
       theme: ThemeData(
           accentColor: AppColors.accent,
           appBarTheme: const AppBarTheme(backgroundColor: AppColors.background),

@@ -48,7 +48,7 @@ class StoreContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [AppSvg.arrowTopLeft, AppSvg.arrowTopRight],
           ),
-          child,
+           child,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [AppSvg.arrowBottomLeft, AppSvg.arrowBottomRight],

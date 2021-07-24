@@ -10,14 +10,14 @@ import 'store_item.dart';
 //лист с айтемами
 class StoreItemsWidget extends StatelessWidget {
   final List<Widget> _listItemsSoft = [
-    const StoreItemWidget(
+    StoreItemWidget(
       icon: Icon(
         Icons.computer,
         color: AppColors.accent,
       ),
       title: "REAPER",
       description: "Fuck your computer",
-      price: "1200",
+      price: 1200,
       type: 0,
     ),
   ];
@@ -57,7 +57,7 @@ class StoreItemsWidget extends StatelessWidget {
                     icon: state.itemsHardwareRam[index].icon,
                     title: "RAM ${state.itemsHardwareRam[index].ram} gb",
                     description: state.itemsHardwareRam[index].description,
-                    price: "${state.itemsHardwareRam[index].price}",
+                    price: state.itemsHardwareRam[index].price,
                     type: state.itemsHardwareRam[index],
                   );
                 } else if (state.itemsHardwareMemory.isNotEmpty) {
@@ -72,8 +72,10 @@ class StoreItemsWidget extends StatelessWidget {
                         .itemsHardwareMemory[
                             index - state.itemsHardwareRam.length]
                         .description,
-                    price:
-                        "${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].price}",
+                    price: state
+                        .itemsHardwareMemory[
+                            index - state.itemsHardwareRam.length]
+                        .price,
                     type: state.itemsHardwareMemory[
                         index - state.itemsHardwareRam.length],
                   );

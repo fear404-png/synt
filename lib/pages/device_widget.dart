@@ -9,6 +9,7 @@ import 'package:synt/until/app_paddings.dart';
 import 'components/system_bar.dart';
 import 'components/system_monitor_list.dart';
 
+//страница с информацией о девайсе
 class DeviceWidget extends StatelessWidget {
   const DeviceWidget({Key? key}) : super(key: key);
 
@@ -22,10 +23,13 @@ class DeviceWidget extends StatelessWidget {
           builder: (context, state) {
             return ListView(
               children: [
-                SystemBar(),
+                // Основное окно информации
+                const SystemBar(),
                 AppPaddings.defaultSizedBoxHeight,
-                SystemMonitorLabel(),
+                // Просто плашка с названием
+                const SystemMonitorLabel(),
                 AppPaddings.defaultSizedBoxHeight,
+                // Показывает какие слоты установлены и их состояние
                 SystemMonitorList(
                   name: "RAM",
                   info: "RAM ${state.ram.ram} GB",

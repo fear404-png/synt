@@ -4,6 +4,9 @@ import 'package:synt/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:synt/until/app_svg.dart';
 
+//здесь храняться сайзбоксы и кастомные контейнеры которые используются чаще всего
+
+//сайзбоксы
 abstract class AppContainersDecoration {
   static BoxDecoration containerBorder = BoxDecoration(
     border: Border.all(
@@ -17,6 +20,7 @@ abstract class AppContainersDecoration {
   );
 }
 
+//кстомные контейнеры
 class StoreContainer extends StatelessWidget {
   final Widget child;
   final double? width;

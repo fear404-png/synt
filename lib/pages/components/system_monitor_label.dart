@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 
+// просто табличка с названием, ничего не обчыного
 class SystemMonitorLabel extends StatelessWidget {
   const SystemMonitorLabel({
     Key? key,
@@ -12,7 +13,7 @@ class SystemMonitorLabel extends StatelessWidget {
     return Container(
       decoration: AppContainersDecoration.containerBorder,
       height: 30,
-      child: Center(
+      child: const Center(
         child: Text(
           "SYSTEM MONITOR",
           style: AppTextStyle.textStyleHeader,

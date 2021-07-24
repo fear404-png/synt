@@ -4,6 +4,7 @@ import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
+//помогите, меня держат в подвале и заставляют верстать эту херню
 class SystemBar extends StatelessWidget {
   const SystemBar({
     Key? key,
@@ -17,7 +18,7 @@ class SystemBar extends StatelessWidget {
           decoration: AppContainersDecoration.containerBorder,
           width: 90,
           height: 90,
-          child: Center(
+          child: const Center(
             child: Icon(
               Icons.developer_board,
               color: AppColors.accent,

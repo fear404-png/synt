@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
 
+//задний фон магазина
 class StoreBackground extends StatelessWidget {
   const StoreBackground({
     Key? key,
@@ -11,7 +12,7 @@ class StoreBackground extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
@@ -19,7 +20,7 @@ class StoreBackground extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(2),
+          padding: const EdgeInsets.all(2),
           child: Container(
             color: AppColors.background,
           ),

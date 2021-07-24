@@ -6,6 +6,7 @@ import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
+//верстка айтема магазина
 class StoreItemWidget extends StatelessWidget {
   final Icon icon;
   final String title;
@@ -61,7 +62,6 @@ class StoreItemWidget extends StatelessWidget {
             create: (context) => StoreBloc(),
             child: GestureDetector(
               onTap: () {
-                print("gg");
                 BlocProvider.of<StoreBloc>(context).add(BuyItem(type));
               },
               child: const StoreContainer(

@@ -7,6 +7,7 @@ import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
+//верстка таба
 class StoreTabWidget extends StatelessWidget {
   final String label;
   final StoreEvent event;

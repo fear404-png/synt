@@ -4,6 +4,7 @@ import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
+//система монитор лист, ну типо
 class SystemMonitorList extends StatelessWidget {
   final String name;
   final String info;
@@ -40,7 +41,7 @@ class SystemMonitorList extends StatelessWidget {
         AppPaddings.defaultSizedBoxWidth,
         Expanded(
             child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: AppContainersDecoration.containerBorder,
           height: 75,
           child: Row(

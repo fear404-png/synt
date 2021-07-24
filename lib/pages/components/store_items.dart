@@ -7,6 +7,7 @@ import 'package:synt/until/app_paddings.dart';
 
 import 'store_item.dart';
 
+//лист с айтемами
 class StoreItemsWidget extends StatelessWidget {
   final List<Widget> _listItemsSoft = [
     const StoreItemWidget(
@@ -28,6 +29,7 @@ class StoreItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StoreBloc, StoreState>(builder: (context, state) {
+      //генерация листа в зависимости от выбранной категории
       if (state is StoreShowSoftware) {
         return Padding(
           padding: AppPaddings.defaultPadding,
@@ -42,6 +44,9 @@ class StoreItemsWidget extends StatelessWidget {
       if (state is StoreShowHardware) {
         return Padding(
           padding: AppPaddings.defaultPadding,
+          //генерация листа с айтемами магазина
+
+          //p.s. переделать нахуй
           child: ListView.builder(
               itemCount: state.itemsHardwareRam.length +
                   state.itemsHardwareMemory.length,

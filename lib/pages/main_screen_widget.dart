@@ -9,6 +9,7 @@ import 'processes_widget.dart';
 import 'store_widget.dart';
 import 'synt_widget.dart';
 
+// Старница с навигацией основных страниц
 class MainScreenWidget extends StatefulWidget {
   MainScreenWidget({Key? key}) : super(key: key);
 
@@ -17,9 +18,11 @@ class MainScreenWidget extends StatefulWidget {
 }
 
 class _MainScreenWidgetState extends State<MainScreenWidget> {
+  //индекс текущей странцы
   int _selectedTab = 0;
   PageController pageController = PageController();
 
+//список показа страниц
   static final List<Widget> _mainScreenPages = [
     const DeviceWidget(),
     const StoreWidget(),
@@ -27,29 +30,31 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     const ProcessesWidget(),
     const MessagesWidget()
   ];
-
+// установки при иницилизации стейта
   @override
   void initState() {
     super.initState();
     pageController = PageController(initialPage: _selectedTab);
   }
 
+//смена страницы
   void onSelectedTap(int index) {
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 
+//смена страницы
   void onPageChanged(int page) {
     setState(() {
       this._selectedTab = page;
     });
   }
 
+//обработка нажатий в нижней навигации
   void onTap(int index) {
     if (index == _selectedTab) return;
     setState(() {
       _selectedTab = index;
-      print(index);
     });
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 100), curve: Curves.easeOutSine);
@@ -60,7 +65,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           AppInfo.appName,
           style: TextStyle(color: AppColors.accent),
         ),
@@ -72,6 +77,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         controller: pageController,
         onPageChanged: onPageChanged,
       ),
+      //создание нижней навигации
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
         items: [

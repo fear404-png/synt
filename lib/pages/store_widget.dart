@@ -19,13 +19,17 @@ class StoreWidget extends StatelessWidget {
       create: (context) => StoreBloc()..add(ShowSoftware()),
       child: Column(
         children: [
+          //табы с выбором категорий товаров
           const StoreTabsWidget(),
           AppPaddings.defaultSizedBoxHeight,
           Expanded(
             child: Stack(
               children: [
+                //задний градиент который создает чет типо полосок
                 const StoreBackground(),
+                //генерация айтемов в магазине
                 StoreItemsWidget(),
+                //затемнение сверху всех айтемов
                 const StoreVignette()
               ],
             ),

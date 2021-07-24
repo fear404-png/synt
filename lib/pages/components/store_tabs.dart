@@ -7,6 +7,7 @@ import 'package:synt/until/app_paddings.dart';
 
 import 'store_tab.dart';
 
+//верстка табов
 class StoreTabsWidget extends StatelessWidget {
   const StoreTabsWidget({
     Key? key,

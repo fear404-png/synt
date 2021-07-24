@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
 
+//чета типо виньетки или затемнение, мораль думайте сами
 class StoreVignette extends StatelessWidget {
   const StoreVignette({
     Key? key,

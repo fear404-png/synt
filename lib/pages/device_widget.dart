@@ -43,9 +43,9 @@ class DeviceWidget extends StatelessWidget {
                 ),
                 AppPaddings.defaultSizedBoxHeight,
                 SystemMonitorList(
-                  name: "RAM",
-                  info: "RAM ${state.ram.ram} GB",
-                  icon: state.ram.icon,
+                  name: "CPU",
+                  info: "CPU ${state.cpu.gflops} GFLOPS",
+                  icon: state.cpu.icon,
                 ),
                 AppPaddings.defaultSizedBoxHeight,
                 SystemMonitorList(

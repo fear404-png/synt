@@ -14,3 +14,9 @@ class ChangeMemory extends DeviceEvent {
 
   ChangeMemory(this.memory);
 }
+
+class ChangeCpu extends DeviceEvent {
+  final CPU cpu;
+
+  ChangeCpu(this.cpu);
+}

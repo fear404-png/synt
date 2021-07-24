@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/store_bloc/items/cpu.dart';
+import 'package:synt/blocs/store_bloc/items/memory.dart';
+import 'package:synt/blocs/store_bloc/items/ram.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
 import 'package:synt/theme/app_colors.dart';
 
@@ -30,6 +33,19 @@ class StoreItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<StoreBloc, StoreState>(builder: (context, state) {
       //генерация листа в зависимости от выбранной категории
+
+      List items = [];
+
+      state.itemsHardwareRam.forEach((element) {
+        items.add(element);
+      });
+      state.itemsHardwareMemory.forEach((element) {
+        items.add(element);
+      });
+      state.itemsHardwareCpu.forEach((element) {
+        items.add(element);
+      });
+
       if (state is StoreShowSoftware) {
         return Padding(
           padding: AppPaddings.defaultPadding,
@@ -46,40 +62,38 @@ class StoreItemsWidget extends StatelessWidget {
           padding: AppPaddings.defaultPadding,
           //генерация листа с айтемами магазина
 
-          //p.s. переделать нахуй
           child: ListView.builder(
-              itemCount: state.itemsHardwareRam.length +
-                  state.itemsHardwareMemory.length,
+              itemCount: items.length,
               itemBuilder: (context, index) {
-                if (index <= state.itemsHardwareRam.length - 1 &&
-                    state.itemsHardwareRam.isNotEmpty) {
+                if (items[index] is RAM) {
+                  RAM _ram = items[index];
                   return StoreItemWidget(
-                    icon: state.itemsHardwareRam[index].icon,
-                    title: "RAM ${state.itemsHardwareRam[index].ram} gb",
-                    description: state.itemsHardwareRam[index].description,
-                    price: state.itemsHardwareRam[index].price,
-                    type: state.itemsHardwareRam[index],
-                  );
-                } else if (state.itemsHardwareMemory.isNotEmpty) {
-                  return StoreItemWidget(
-                    icon: state
-                        .itemsHardwareMemory[
-                            index - state.itemsHardwareRam.length]
-                        .icon,
-                    title:
-                        "Memory ${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].memory} GB",
-                    description: state
-                        .itemsHardwareMemory[
-                            index - state.itemsHardwareRam.length]
-                        .description,
-                    price: state
-                        .itemsHardwareMemory[
-                            index - state.itemsHardwareRam.length]
-                        .price,
-                    type: state.itemsHardwareMemory[
-                        index - state.itemsHardwareRam.length],
-                  );
+                      icon: _ram.icon,
+                      title: "RAM ${_ram.ram} GB",
+                      description: _ram.description,
+                      price: _ram.price,
+                      type: _ram);
                 }
+                if (items[index] is Memory) {
+                  Memory _memory = items[index];
+                  return StoreItemWidget(
+                      icon: _memory.icon,
+                      title: "Memory ${_memory.memory} GB",
+                      description: _memory.description,
+                      price: _memory.price,
+                      type: _memory);
+                }
+
+                if (items[index] is CPU) {
+                  CPU _cpu = items[index];
+                  return StoreItemWidget(
+                      icon: _cpu.icon,
+                      title: "CPU ${_cpu.gflops} GFLOPS",
+                      description: _cpu.description,
+                      price: _cpu.price,
+                      type: _cpu);
+                }
+
                 return const Text(
                   "item not found",
                   style: TextStyle(color: AppColors.accent),

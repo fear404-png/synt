@@ -10,9 +10,15 @@ import 'components/store_items.dart';
 import 'components/store_tabs.dart';
 import 'components/store_vignette.dart';
 
-class StoreWidget extends StatelessWidget {
+class StoreWidget extends StatefulWidget {
   const StoreWidget({Key? key}) : super(key: key);
 
+  @override
+  State<StoreWidget> createState() => _StoreWidgetState();
+}
+
+class _StoreWidgetState extends State<StoreWidget>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -38,4 +44,8 @@ class StoreWidget extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

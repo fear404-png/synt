@@ -20,3 +20,9 @@ class ChangeCpu extends DeviceEvent {
 
   ChangeCpu(this.cpu);
 }
+
+class ChangeNetwork extends DeviceEvent {
+  final Network network;
+
+  ChangeNetwork(this.network);
+}

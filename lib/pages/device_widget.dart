@@ -49,9 +49,9 @@ class DeviceWidget extends StatelessWidget {
                 ),
                 AppPaddings.defaultSizedBoxHeight,
                 SystemMonitorList(
-                  name: "RAM",
-                  info: "RAM ${state.ram.ram} GB",
-                  icon: state.ram.icon,
+                  name: "Network",
+                  info: "${state.network.speed} Mbit/s",
+                  icon: state.network.icon,
                 ),
               ],
             );

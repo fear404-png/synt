@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 import 'package:synt/blocs/device_bloc/device_bloc.dart';
 import 'package:synt/blocs/store_bloc/items/cpu.dart';
+import 'package:synt/blocs/store_bloc/items/network.dart';
 import 'package:synt/data/player.dart';
 
 import 'items/memory.dart';
@@ -32,21 +33,30 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
     CPU(22, "Central processing unit", 3500)
   ];
 
+  static final List<Network> _itemsHardwareNetwork = [
+    Network(
+        10, "Increases the speed of downloading files from the network", 1500),
+    Network(
+        15, "Increases the speed of downloading files from the network", 1800),
+    Network(
+        20, "Increases the speed of downloading files from the network", 2500),
+  ];
+
   StoreBloc()
-      : super(StoreInitial(
-            _itemsHardwareRam, _itemsHardwareMemory, _itemsHardwareCpu));
+      : super(StoreInitial(_itemsHardwareRam, _itemsHardwareMemory,
+            _itemsHardwareCpu, _itemsHardwareNetwork));
 
   @override
   Stream<StoreState> mapEventToState(
     StoreEvent event,
   ) async* {
     if (event is ShowHardware) {
-      yield StoreShowHardware(
-          _itemsHardwareRam, _itemsHardwareMemory, _itemsHardwareCpu);
+      yield StoreShowHardware(_itemsHardwareRam, _itemsHardwareMemory,
+          _itemsHardwareCpu, _itemsHardwareNetwork);
     }
     if (event is ShowSoftware) {
-      yield StoreShowSoftware(
-          _itemsHardwareRam, _itemsHardwareMemory, _itemsHardwareCpu);
+      yield StoreShowSoftware(_itemsHardwareRam, _itemsHardwareMemory,
+          _itemsHardwareCpu, _itemsHardwareNetwork);
     }
     if (event is BuyItem) {
       if (event.type is RAM) {
@@ -58,9 +68,12 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       } else if (event.type is CPU) {
         DeviceBloc().add(ChangeCpu(event.type));
         _itemsHardwareCpu.remove(event.type);
+      } else if (event.type is Network) {
+        DeviceBloc().add(ChangeNetwork(event.type));
+        _itemsHardwareNetwork.remove(event.type);
       }
-      yield StoreShowHardware(
-          _itemsHardwareRam, _itemsHardwareMemory, _itemsHardwareCpu);
+      yield StoreShowHardware(_itemsHardwareRam, _itemsHardwareMemory,
+          _itemsHardwareCpu, _itemsHardwareNetwork);
 
       if (state is StoreShowHardware) {}
     }

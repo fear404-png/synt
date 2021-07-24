@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synt/blocs/store_bloc/items/cpu.dart';
 import 'package:synt/blocs/store_bloc/items/memory.dart';
+import 'package:synt/blocs/store_bloc/items/network.dart';
 import 'package:synt/blocs/store_bloc/items/ram.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
 import 'package:synt/theme/app_colors.dart';
@@ -36,15 +37,18 @@ class StoreItemsWidget extends StatelessWidget {
 
       List items = [];
 
-      state.itemsHardwareRam.forEach((element) {
+      for (var element in state.itemsHardwareRam) {
         items.add(element);
-      });
-      state.itemsHardwareMemory.forEach((element) {
+      }
+      for (var element in state.itemsHardwareMemory) {
         items.add(element);
-      });
-      state.itemsHardwareCpu.forEach((element) {
+      }
+      for (var element in state.itemsHardwareCpu) {
         items.add(element);
-      });
+      }
+      for (var element in state.itemsHardwareNetwork) {
+        items.add(element);
+      }
 
       if (state is StoreShowSoftware) {
         return Padding(
@@ -92,6 +96,16 @@ class StoreItemsWidget extends StatelessWidget {
                       description: _cpu.description,
                       price: _cpu.price,
                       type: _cpu);
+                }
+
+                if (items[index] is Network) {
+                  Network _network = items[index];
+                  return StoreItemWidget(
+                      icon: _network.icon,
+                      title: "Network ${_network.speed} Mbit/s",
+                      description: _network.description,
+                      price: _network.price,
+                      type: _network);
                 }
 
                 return const Text(

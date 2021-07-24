@@ -21,17 +21,17 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   PageController pageController = PageController();
 
   static final List<Widget> _mainScreenPages = [
-    DeviceWidget(),
-    StoreWidget(),
-    SyntWidget(),
-    ProcessesWidget(),
-    MessagesWidget()
+    const DeviceWidget(),
+    const StoreWidget(),
+    const SyntWidget(),
+    const ProcessesWidget(),
+    const MessagesWidget()
   ];
 
   @override
   void initState() {
     super.initState();
-    pageController = new PageController(initialPage: _selectedTab);
+    pageController = PageController(initialPage: _selectedTab);
   }
 
   void onSelectedTap(int index) {
@@ -66,16 +66,12 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         ),
         backgroundColor: AppColors.background,
       ),
-
       body: PageView(
         children: _mainScreenPages,
         scrollDirection: Axis.horizontal,
         controller: pageController,
         onPageChanged: onPageChanged,
       ),
-      // body: _PagesWidget(
-      //     mainScreenPages: _mainScreenPages, selectedTab: _selectedTab),
-
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
         items: [
@@ -103,7 +99,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
             icon: Icon(
               Icons.message,
             ),
-            label: "Messages",
+            label: "DEBUG",
             backgroundColor: AppColors.background,
           ),
         ],

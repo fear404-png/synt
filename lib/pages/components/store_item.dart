@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/store_bloc/store_bloc.dart';
 
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
@@ -9,12 +11,14 @@ class StoreItemWidget extends StatelessWidget {
   final String title;
   final String description;
   final String price;
+  final Object type;
   const StoreItemWidget({
     Key? key,
     required this.icon,
     required this.title,
     required this.description,
     required this.price,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -53,14 +57,23 @@ class StoreItemWidget extends StatelessWidget {
                   ),
                   height: 45)),
           AppPaddings.defaultSizedBoxWidth,
-          StoreContainer(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              child: Text(
-                "$price BTC",
-                style: AppTextStyle.textStyleHeader,
-              ),
-              width: 100,
-              height: 45)
+          BlocProvider(
+            create: (context) => StoreBloc(),
+            child: GestureDetector(
+              onTap: () {
+                print("gg");
+                BlocProvider.of<StoreBloc>(context).add(BuyItem(type));
+              },
+              child: const StoreContainer(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Text(
+                    "1 BTC",
+                    style: AppTextStyle.textStyleHeader,
+                  ),
+                  width: 100,
+                  height: 45),
+            ),
+          )
         ],
       ),
     );

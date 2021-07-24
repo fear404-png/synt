@@ -35,6 +35,7 @@ class StoreContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      color: AppColors.background,
       child: Column(
         crossAxisAlignment: this.crossAxisAlignment,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

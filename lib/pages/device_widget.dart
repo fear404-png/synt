@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/device_bloc/device_bloc.dart';
 import 'package:synt/pages/components/system_monitor_label.dart';
 import 'package:synt/theme/app_colors.dart';
 
@@ -12,22 +14,45 @@ class DeviceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.defaultPadding,
-      child: ListView(
-        children: [
-          SystemBar(),
-          AppPaddings.defaultSizedBoxHeight,
-          SystemMonitorLabel(),
-          AppPaddings.defaultSizedBoxHeight,
-          SystemMonitorList(),
-          AppPaddings.defaultSizedBoxHeight,
-          SystemMonitorList(),
-          AppPaddings.defaultSizedBoxHeight,
-          SystemMonitorList(),
-          AppPaddings.defaultSizedBoxHeight,
-          SystemMonitorList(),
-        ],
+    return BlocProvider(
+      create: (context) => DeviceBloc(),
+      child: Padding(
+        padding: AppPaddings.defaultPadding,
+        child: BlocBuilder<DeviceBloc, DeviceState>(
+          builder: (context, state) {
+            return ListView(
+              children: [
+                SystemBar(),
+                AppPaddings.defaultSizedBoxHeight,
+                SystemMonitorLabel(),
+                AppPaddings.defaultSizedBoxHeight,
+                SystemMonitorList(
+                  name: "RAM",
+                  info: "RAM ${state.ram.ram} GB",
+                  icon: state.ram.icon,
+                ),
+                AppPaddings.defaultSizedBoxHeight,
+                SystemMonitorList(
+                  name: "Memory",
+                  info: "Memory ${state.memory.memory} GB",
+                  icon: state.memory.icon,
+                ),
+                AppPaddings.defaultSizedBoxHeight,
+                SystemMonitorList(
+                  name: "RAM",
+                  info: "RAM ${state.ram.ram} GB",
+                  icon: state.ram.icon,
+                ),
+                AppPaddings.defaultSizedBoxHeight,
+                SystemMonitorList(
+                  name: "RAM",
+                  info: "RAM ${state.ram.ram} GB",
+                  icon: state.ram.icon,
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

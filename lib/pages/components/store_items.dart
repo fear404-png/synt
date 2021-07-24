@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:synt/blocs/bloc/store_bloc.dart';
+import 'package:synt/blocs/store_bloc/store_bloc.dart';
 import 'package:synt/theme/app_colors.dart';
 
 import 'package:synt/until/app_paddings.dart';
@@ -17,6 +17,7 @@ class StoreItemsWidget extends StatelessWidget {
       title: "REAPER",
       description: "Fuck your computer",
       price: "1200",
+      type: 0,
     ),
   ];
 
@@ -31,7 +32,6 @@ class StoreItemsWidget extends StatelessWidget {
         return Padding(
           padding: AppPaddings.defaultPadding,
           child: ListView.builder(
-              physics: ClampingScrollPhysics(),
               itemCount: _listItemsSoft.length,
               itemBuilder: (context, index) {
                 return _listItemsSoft[index];
@@ -43,17 +43,19 @@ class StoreItemsWidget extends StatelessWidget {
         return Padding(
           padding: AppPaddings.defaultPadding,
           child: ListView.builder(
-              itemCount:
-                  state.itemsHardwareRam.length + state.itemsHardwareRam.length,
+              itemCount: state.itemsHardwareRam.length +
+                  state.itemsHardwareMemory.length,
               itemBuilder: (context, index) {
-                if (index <= state.itemsHardwareRam.length - 1) {
+                if (index <= state.itemsHardwareRam.length - 1 &&
+                    state.itemsHardwareRam.isNotEmpty) {
                   return StoreItemWidget(
                     icon: state.itemsHardwareRam[index].icon,
                     title: "RAM ${state.itemsHardwareRam[index].ram} gb",
-                    description: "${state.itemsHardwareRam[index].description}",
+                    description: state.itemsHardwareRam[index].description,
                     price: "${state.itemsHardwareRam[index].price}",
+                    type: state.itemsHardwareRam[index],
                   );
-                } else {
+                } else if (state.itemsHardwareMemory.isNotEmpty) {
                   return StoreItemWidget(
                     icon: state
                         .itemsHardwareMemory[
@@ -67,8 +69,14 @@ class StoreItemsWidget extends StatelessWidget {
                         .description,
                     price:
                         "${state.itemsHardwareMemory[index - state.itemsHardwareRam.length].price}",
+                    type: state.itemsHardwareMemory[
+                        index - state.itemsHardwareRam.length],
                   );
                 }
+                return const Text(
+                  "item not found",
+                  style: TextStyle(color: AppColors.accent),
+                );
               }),
         );
       }

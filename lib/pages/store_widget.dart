@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:synt/blocs/bloc/store_bloc.dart';
+import 'package:synt/blocs/store_bloc/store_bloc.dart';
 
 import 'package:synt/until/app_paddings.dart';
 
@@ -19,14 +19,14 @@ class StoreWidget extends StatelessWidget {
       create: (context) => StoreBloc()..add(ShowSoftware()),
       child: Column(
         children: [
-          StoreTabsWidget(),
+          const StoreTabsWidget(),
           AppPaddings.defaultSizedBoxHeight,
           Expanded(
             child: Stack(
               children: [
-                StoreBackground(),
+                const StoreBackground(),
                 StoreItemsWidget(),
-                StoreVignette()
+                const StoreVignette()
               ],
             ),
           ),

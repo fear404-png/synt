@@ -5,8 +5,15 @@ import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
 class SystemMonitorList extends StatelessWidget {
+  final String name;
+  final String info;
+  final Icon icon;
+
   const SystemMonitorList({
     Key? key,
+    required this.name,
+    required this.info,
+    required this.icon,
   }) : super(key: key);
 
   @override
@@ -21,13 +28,9 @@ class SystemMonitorList extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.favorite,
-                  color: AppColors.accent,
-                  size: 45,
-                ),
+                icon,
                 Text(
-                  "NAME",
+                  name,
                   style: AppTextStyle.textStyle,
                 )
               ],
@@ -47,18 +50,18 @@ class SystemMonitorList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "NETWORK: 15 Mbps/s",
+                    info,
                     style: AppTextStyle.textStyle,
                   ),
-                  Text(
+                  const Text(
                     "STATUS: STABLE",
                     style: AppTextStyle.textStyle,
                   ),
-                  Text(
+                  const Text(
                     "WARNINGS: 0",
                     style: AppTextStyle.textStyle,
                   ),
-                  Text(
+                  const Text(
                     "ERRORS: 0",
                     style: AppTextStyle.textStyle,
                   )
@@ -71,7 +74,7 @@ class SystemMonitorList extends StatelessWidget {
                       width: 70,
                       height: 30,
                       decoration: AppContainersDecoration.containerBorder,
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           "MORE",
                           style: AppTextStyle.textStyleHeader,

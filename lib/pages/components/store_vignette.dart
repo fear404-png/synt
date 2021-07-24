@@ -8,15 +8,17 @@ class StoreVignette extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(2),
-      child: Container(
-        height: 50,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [Colors.transparent, AppColors.background]),
+    return IgnorePointer(
+      child: Padding(
+        padding: const EdgeInsets.all(2),
+        child: Container(
+          height: 50,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [Colors.transparent, AppColors.background]),
+          ),
         ),
       ),
     );

@@ -8,7 +8,7 @@ class MessagesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "Messages",
+        "DEBUG",
         style: TextStyle(backgroundColor: AppColors.accent),
       ),
     );

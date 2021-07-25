@@ -21,12 +21,12 @@ abstract class AppContainersDecoration {
 }
 
 //кстомные контейнеры
-class StoreContainer extends StatelessWidget {
+class CustomContainer extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? height;
   final CrossAxisAlignment crossAxisAlignment;
-  const StoreContainer(
+  const CustomContainer(
       {Key? key,
       required this.child,
       this.width,

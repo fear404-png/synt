@@ -19,14 +19,14 @@ class SyntPageItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
-          StoreContainer(
+          CustomContainer(
               width: 45,
               height: 45,
               child: icon,
               crossAxisAlignment: CrossAxisAlignment.center),
           AppPaddings.defaultSizedBoxWidth,
           Expanded(
-              child: StoreContainer(
+              child: CustomContainer(
             height: 45,
             child: Text(
               name,
@@ -35,7 +35,7 @@ class SyntPageItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
           )),
           AppPaddings.defaultSizedBoxWidth,
-          StoreContainer(
+          CustomContainer(
               width: 45,
               height: 45,
               child: icon,

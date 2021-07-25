@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
-import 'package:synt/until/app_containers.dart';
-import 'package:synt/until/app_font_style.dart';
+
 import 'package:synt/until/app_paddings.dart';
 
 import 'components/synt_page_item.dart';
@@ -14,15 +13,18 @@ class SyntWidget extends StatelessWidget {
     return Padding(
       padding: AppPaddings.defaultPadding,
       child: Column(
-        children: const [
-          SyntPageItem(
-            name: "APPS",
-            icon: Icon(
-              Icons.apps_outlined,
-              color: AppColors.accent,
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed("/main_screen/apps"),
+            child: const SyntPageItem(
+              name: "APPS",
+              icon: Icon(
+                Icons.apps_outlined,
+                color: AppColors.accent,
+              ),
             ),
           ),
-          SyntPageItem(
+          const SyntPageItem(
             name: "INVENTORY",
             icon: Icon(
               Icons.inventory,

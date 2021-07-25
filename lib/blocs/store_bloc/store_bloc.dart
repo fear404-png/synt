@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
+import 'package:synt/blocs/apps_bloc/apps_bloc.dart';
 import 'package:synt/blocs/device_bloc/device_bloc.dart';
 import 'package:synt/blocs/store_bloc/items/antivirus.dart';
 import 'package:synt/blocs/store_bloc/items/bypasser.dart';
@@ -146,22 +147,59 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
       } else if (event.type is Network) {
         DeviceBloc().add(ChangeNetwork(event.type));
         _itemsHardwareNetwork.remove(event.type);
+      } else if (event.type is Antivirus) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwareAntivirus.remove(event.type);
+      } else if (event.type is Bypasser) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwareBypasser.remove(event.type);
+      } else if (event.type is Firewall) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwareFirewall.remove(event.type);
+      } else if (event.type is PasswordCracker) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwarePasswordCracker.remove(event.type);
+      } else if (event.type is PasswordEncryptor) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwarePasswordEncryptor.remove(event.type);
+      } else if (event.type is Spam) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwareSpam.remove(event.type);
+      } else if (event.type is Spyware) {
+        AppsBloc().add(AddItem(event.type, event.type.lvl));
+        _itemsSoftwareSpyware.remove(event.type);
       }
-      yield StoreShowHardware(
-        _itemsHardwareRam,
-        _itemsHardwareMemory,
-        _itemsHardwareCpu,
-        _itemsHardwareNetwork,
-        _itemsSoftwareAntivirus,
-        _itemsSoftwareBypasser,
-        _itemsSoftwareFirewall,
-        _itemsSoftwarePasswordCracker,
-        _itemsSoftwarePasswordEncryptor,
-        _itemsSoftwareSpam,
-        _itemsSoftwareSpyware,
-      );
 
-      if (state is StoreShowHardware) {}
+      if (state is StoreShowHardware) {
+        yield StoreShowHardware(
+          _itemsHardwareRam,
+          _itemsHardwareMemory,
+          _itemsHardwareCpu,
+          _itemsHardwareNetwork,
+          _itemsSoftwareAntivirus,
+          _itemsSoftwareBypasser,
+          _itemsSoftwareFirewall,
+          _itemsSoftwarePasswordCracker,
+          _itemsSoftwarePasswordEncryptor,
+          _itemsSoftwareSpam,
+          _itemsSoftwareSpyware,
+        );
+      }
+      if (state is StoreShowSoftware) {
+        yield StoreShowSoftware(
+          _itemsHardwareRam,
+          _itemsHardwareMemory,
+          _itemsHardwareCpu,
+          _itemsHardwareNetwork,
+          _itemsSoftwareAntivirus,
+          _itemsSoftwareBypasser,
+          _itemsSoftwareFirewall,
+          _itemsSoftwarePasswordCracker,
+          _itemsSoftwarePasswordEncryptor,
+          _itemsSoftwareSpam,
+          _itemsSoftwareSpyware,
+        );
+      }
     }
   }
 }

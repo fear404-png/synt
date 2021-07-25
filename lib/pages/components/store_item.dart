@@ -31,7 +31,7 @@ class StoreItemWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          StoreContainer(
+          CustomContainer(
             crossAxisAlignment: CrossAxisAlignment.center,
             width: 45,
             height: 45,
@@ -39,7 +39,7 @@ class StoreItemWidget extends StatelessWidget {
           ),
           AppPaddings.defaultSizedBoxWidth,
           Expanded(
-              child: StoreContainer(
+              child: CustomContainer(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -68,7 +68,7 @@ class StoreItemWidget extends StatelessWidget {
                 BlocProvider.of<AppbarBloc>(context).add(RemoveBtc(price));
               }
             },
-            child: StoreContainer(
+            child: CustomContainer(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 child: Text(
                   "$price BTC",

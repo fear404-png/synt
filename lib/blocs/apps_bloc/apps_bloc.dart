@@ -29,25 +29,25 @@ class AppsBloc extends Bloc<AppsEvent, AppsState> {
       }
       if (isFind) {
         for (var element in _items) {
-          if (element is Antivirus) {
+          if (element is Antivirus && item is Antivirus) {
             element.upLvl(item.lvl);
           }
-          if (element is Bypasser) {
+          if (element is Bypasser && item is Bypasser) {
             element.upLvl(item.lvl);
           }
-          if (element is Firewall) {
+          if (element is Firewall && item is Firewall) {
             element.upLvl(item.lvl);
           }
-          if (element is PasswordCracker) {
+          if (element is PasswordCracker && item is PasswordCracker) {
             element.upLvl(item.lvl);
           }
-          if (element is PasswordEncryptor) {
+          if (element is PasswordEncryptor && item is PasswordEncryptor) {
             element.upLvl(item.lvl);
           }
-          if (element is Spam) {
+          if (element is Spam && item is Spam) {
             element.upLvl(item.lvl);
           }
-          if (element is Spyware) {
+          if (element is Spyware && item is Spyware) {
             element.upLvl(item.lvl);
           }
         }

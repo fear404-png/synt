@@ -137,19 +137,15 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
     }
     if (event is BuyItem) {
       if (event.type is RAM) {
-        DeviceBloc().add(ChangeRam(event.type));
         Inventory.inventoryItems.add(event.type);
         _itemsHardwareRam.remove(event.type);
       } else if (event.type is Memory) {
-        DeviceBloc().add(ChangeMemory(event.type));
         Inventory.inventoryItems.add(event.type);
         _itemsHardwareMemory.remove(event.type);
       } else if (event.type is CPU) {
-        DeviceBloc().add(ChangeCpu(event.type));
         Inventory.inventoryItems.add(event.type);
         _itemsHardwareCpu.remove(event.type);
       } else if (event.type is Network) {
-        DeviceBloc().add(ChangeNetwork(event.type));
         Inventory.inventoryItems.add(event.type);
         _itemsHardwareNetwork.remove(event.type);
       } else if (event.type is Antivirus) {

@@ -27,6 +27,7 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
     if (event is ChangeRam) {
       Device.ram = event.ram;
       ram = Device.ram;
+      print(ram.ram);
 
       yield DeviceInitial(ram, memory, cpu, network);
     }

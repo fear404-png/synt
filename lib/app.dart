@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:synt/pages/apps_widget.dart';
+import 'package:synt/pages/hardware_info.dart';
 import 'package:synt/pages/inventory_widget.dart';
 import 'package:synt/theme/app_colors.dart';
 
@@ -29,6 +30,7 @@ class _MyAppState extends State<MyApp> {
         "/main_screen": (context) => MainScreenWidget(),
         "/main_screen/apps": (context) => const AppsWidget(),
         "/main_screen/inventory": (context) => const InventoryWidget(),
+        "/main_screen/hardware_info": (context) => const HardwareInfo(),
       },
       initialRoute: "/main_screen",
     );

@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
+import 'package:synt/until/global_params.dart';
 
 //система монитор лист, ну типо
-class SystemMonitorList extends StatelessWidget {
+class SystemMonitorList extends StatefulWidget {
   final String name;
   final String info;
   final Icon icon;
+  final type;
 
-  const SystemMonitorList({
+  SystemMonitorList({
     Key? key,
     required this.name,
     required this.info,
     required this.icon,
+    this.type,
   }) : super(key: key);
+
+  @override
+  State<SystemMonitorList> createState() => _SystemMonitorListState();
+}
+
+class _SystemMonitorListState extends State<SystemMonitorList> {
+  Color buttonColor = AppColors.background;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +40,9 @@ class SystemMonitorList extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                icon,
+                widget.icon,
                 Text(
-                  name,
+                  widget.name,
                   style: AppTextStyle.textStyle,
                 )
               ],
@@ -51,7 +62,7 @@ class SystemMonitorList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    info,
+                    widget.info,
                     style: AppTextStyle.textStyle,
                   ),
                   const Text(
@@ -71,16 +82,38 @@ class SystemMonitorList extends StatelessWidget {
               Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Container(
-                      width: 70,
-                      height: 30,
-                      decoration: AppContainersDecoration.containerBorder,
-                      child: const Center(
-                        child: Text(
-                          "MORE",
-                          style: AppTextStyle.textStyleHeader,
+                  child: GestureDetector(
+                    onTapDown: (TapDownDetails tapDownDetails) =>
+                        setState(() => buttonColor = AppColors.accent),
+                    onTapUp: (TapUpDetails tapUpDetails) =>
+                        setState(() => buttonColor = AppColors.background),
+                    onTapCancel: () =>
+                        setState(() => buttonColor = AppColors.background),
+                    onTap: () {
+                      HardwareInfoType.type = widget.type;
+                      Navigator.of(context).pushNamed(
+                        "/main_screen/hardware_info",
+                      );
+                    },
+                    child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.linearToEaseOut,
+                        width: 70,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: buttonColor,
+                          border: Border.all(
+                              color: AppColors.accent,
+                              width: 1.0,
+                              style: BorderStyle.solid),
                         ),
-                      )),
+                        child: const Center(
+                          child: Text(
+                            "CHANGE",
+                            style: AppTextStyle.textStyleHeader,
+                          ),
+                        )),
+                  ),
                 ),
               )
             ],

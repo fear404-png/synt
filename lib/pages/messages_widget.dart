@@ -18,10 +18,9 @@ class MessagesWidget extends StatelessWidget {
               builder: (context, state) {
                 return TextButton(
                     onPressed: () {
-                      print(state);
-                      BlocProvider.of<AppbarBloc>(context).add(AddBtc(1000));
+                      BlocProvider.of<AppbarBloc>(context).add(AddBtc(10000));
                     },
-                    child: Text("Добавить 1000 битков, уже ${state.btc}"));
+                    child: Text("Добавить 10000 битков, уже ${state.btc}"));
               },
             ),
             TextButton(

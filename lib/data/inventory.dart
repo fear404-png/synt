@@ -1,1 +1,3 @@
-abstract class Inventory {}
+abstract class Inventory {
+  static List inventoryItems = [];
+}

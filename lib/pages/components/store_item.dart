@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
 import 'package:synt/data/player.dart';
+import 'package:synt/theme/app_colors.dart';
 
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
@@ -70,10 +72,12 @@ class StoreItemWidget extends StatelessWidget {
             },
             child: CustomContainer(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                child: Text(
-                  "$price BTC",
-                  style: AppTextStyle.textStyle,
-                  maxLines: 1,
+                child: Container(
+                  child: Text(
+                    "$price BTC",
+                    style: AppTextStyle.textStyle,
+                    maxLines: 1,
+                  ),
                 ),
                 width: 100,
                 height: 45),

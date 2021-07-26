@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:synt/pages/apps.dart';
+import 'package:synt/pages/apps_widget.dart';
+import 'package:synt/pages/inventory_widget.dart';
 import 'package:synt/theme/app_colors.dart';
 
 import 'pages/main_screen_widget.dart';
@@ -26,7 +27,8 @@ class _MyAppState extends State<MyApp> {
       // home: MainScreenWidget(),
       routes: {
         "/main_screen": (context) => MainScreenWidget(),
-        "/main_screen/apps": (context) => AppsWidget(),
+        "/main_screen/apps": (context) => const AppsWidget(),
+        "/main_screen/inventory": (context) => const InventoryWidget(),
       },
       initialRoute: "/main_screen",
     );

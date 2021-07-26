@@ -24,11 +24,15 @@ class SyntWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SyntPageItem(
-            name: "INVENTORY",
-            icon: Icon(
-              Icons.inventory,
-              color: AppColors.accent,
+          GestureDetector(
+            onTap: () =>
+                Navigator.of(context).pushNamed("/main_screen/inventory"),
+            child: const SyntPageItem(
+              name: "INVENTORY",
+              icon: Icon(
+                Icons.inventory,
+                color: AppColors.accent,
+              ),
             ),
           ),
         ],

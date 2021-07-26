@@ -14,6 +14,7 @@ import 'package:synt/blocs/store_bloc/items/password_cracker.dart';
 import 'package:synt/blocs/store_bloc/items/password_encryptor.dart';
 import 'package:synt/blocs/store_bloc/items/spam.dart';
 import 'package:synt/blocs/store_bloc/items/spyware.dart';
+import 'package:synt/data/inventory.dart';
 import 'package:synt/data/player.dart';
 
 import 'items/memory.dart';
@@ -137,15 +138,19 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
     if (event is BuyItem) {
       if (event.type is RAM) {
         DeviceBloc().add(ChangeRam(event.type));
+        Inventory.inventoryItems.add(event.type);
         _itemsHardwareRam.remove(event.type);
       } else if (event.type is Memory) {
         DeviceBloc().add(ChangeMemory(event.type));
+        Inventory.inventoryItems.add(event.type);
         _itemsHardwareMemory.remove(event.type);
       } else if (event.type is CPU) {
         DeviceBloc().add(ChangeCpu(event.type));
+        Inventory.inventoryItems.add(event.type);
         _itemsHardwareCpu.remove(event.type);
       } else if (event.type is Network) {
         DeviceBloc().add(ChangeNetwork(event.type));
+        Inventory.inventoryItems.add(event.type);
         _itemsHardwareNetwork.remove(event.type);
       } else if (event.type is Antivirus) {
         AppsBloc().add(AddItem(event.type, event.type.lvl));

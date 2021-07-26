@@ -88,7 +88,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         //создание нижней навигации
         bottomNavigationBar: BottomNavigationBar(
           iconSize: 30,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.device_hub_sharp),
               label: "Device",

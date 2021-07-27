@@ -1,13 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
-class ProcessesItem extends StatelessWidget {
-  const ProcessesItem({
+class ProcessesItemWidget extends StatelessWidget {
+  final String title;
+  final String ip;
+
+  const ProcessesItemWidget({
     Key? key,
+    required this.title,
+    required this.ip,
   }) : super(key: key);
 
   @override
@@ -18,7 +22,7 @@ class ProcessesItem extends StatelessWidget {
             width: 60,
             height: 60,
             child: Icon(
-              Icons.network_wifi,
+              Icons.network_locked,
               color: AppColors.accent,
             ),
             crossAxisAlignment: CrossAxisAlignment.center),
@@ -29,13 +33,13 @@ class ProcessesItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
-              children: const [
+              children: [
                 Text(
-                  "123.123.123.123",
+                  ip,
                   style: AppTextStyle.textStyleHeader,
                 ),
                 Text(
-                  "Firewall 19 lvl",
+                  title,
                   style: AppTextStyle.textStyle,
                 ),
               ],

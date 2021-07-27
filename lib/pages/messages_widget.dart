@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
+import 'package:synt/blocs/processes_bloc/processes_bloc.dart';
 import 'package:synt/theme/app_colors.dart';
 
 class MessagesWidget extends StatelessWidget {
@@ -23,9 +24,19 @@ class MessagesWidget extends StatelessWidget {
                     child: Text("Добавить 10000 битков, уже ${state.btc}"));
               },
             ),
-            TextButton(
-                onPressed: () {},
-                child: const Text("Удалить компутер (в процессе разработки)")),
+            BlocProvider(
+              create: (context) => ProcessesBloc(),
+              child: BlocBuilder<ProcessesBloc, ProcessesState>(
+                builder: (context, state) {
+                  return TextButton(
+                      onPressed: () {
+                        BlocProvider.of<ProcessesBloc>(context)
+                            .add(AddProcess());
+                      },
+                      child: const Text("Добавить процесс"));
+                },
+              ),
+            ),
           ],
         ),
       ),

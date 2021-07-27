@@ -90,6 +90,7 @@ class HardwareInfo extends StatelessWidget {
                           ),
                         );
                       }
+
                       if (item is Network) {
                         return GestureDetector(
                           onTap: () {

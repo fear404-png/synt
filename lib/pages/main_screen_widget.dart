@@ -4,6 +4,7 @@ import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/theme/app_info.dart';
+import 'package:synt/until/app_font_style.dart';
 
 import 'device_widget.dart';
 import 'messages_widget.dart';
@@ -73,7 +74,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
             builder: (context, state) {
               return Text(
                 "${state.btc} BTC",
-                style: const TextStyle(color: AppColors.accent),
+                style: AppTextStyle.textStyleHeader,
               );
             },
           ),

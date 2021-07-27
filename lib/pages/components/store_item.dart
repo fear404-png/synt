@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
 import 'package:synt/data/player.dart';
+import 'package:synt/pages/main_screen_widget.dart';
 import 'package:synt/theme/app_colors.dart';
 
 import 'package:synt/until/app_containers.dart';
@@ -68,6 +69,13 @@ class StoreItemWidget extends StatelessWidget {
               if (Player.btc >= price) {
                 BlocProvider.of<StoreBloc>(context).add(BuyItem(type));
                 BlocProvider.of<AppbarBloc>(context).add(RemoveBtc(price));
+                Scaffold.of(context).showSnackBar(SnackBar(
+                    duration: Duration(milliseconds: 1200),
+                    backgroundColor: AppColors.background,
+                    content: Text(
+                      "You have purchased a $title for $price btc",
+                      style: AppTextStyle.textStyleHeader,
+                    )));
               }
             },
             child: CustomContainer(

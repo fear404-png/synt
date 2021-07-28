@@ -9,10 +9,18 @@ class ProcessesItem {
   final String ip;
   final Icon;
   int duration;
+  int? d;
 
   Timer? _timer;
 
-  ProcessesItem(this.name, this.ip, this.Icon, this.duration);
+  ProcessesItem(
+    this.name,
+    this.ip,
+    this.Icon,
+    this.duration,
+  ) {
+    d = duration;
+  }
 
   start() {
     _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {

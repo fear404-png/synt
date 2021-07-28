@@ -21,9 +21,9 @@ class ProcessesItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<ProcessesBloc>(context).add(Tick());
     return BlocBuilder<ProcessesBloc, ProcessesState>(
       builder: (context, state) {
-        int d = state.items[index].duration;
         return Row(
           children: [
             const CustomContainer(
@@ -75,7 +75,7 @@ class ProcessesItemWidget extends StatelessWidget {
                                 top: 11,
                                 right: 7,
                                 child: Text(
-                                  "${d}%",
+                                  "${(100 - state.items[index].duration / (state.items[index].d! / 100)).floor()}%",
                                   style: AppTextStyle.textStyle,
                                 )),
                           )

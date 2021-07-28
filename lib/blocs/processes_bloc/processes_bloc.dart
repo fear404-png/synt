@@ -33,5 +33,12 @@ class ProcessesBloc extends Bloc<ProcessesEvent, ProcessesState> {
 
       yield ProcessesInitial(_itemsRun);
     }
+
+    if (event is Tick) {
+      Future.delayed(Duration(seconds: 1)).then((value) {
+        add(Tick());
+      });
+      yield ProcessesInitial(_itemsRun);
+    }
   }
 }

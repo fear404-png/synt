@@ -17,23 +17,20 @@ class SyntWidget extends StatelessWidget {
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed("/main_screen/apps"),
             child: const SyntPageItem(
-              name: "APPS",
-              icon: Icon(
-                Icons.apps_outlined,
-                color: AppColors.accent,
-              ),
-            ),
+                name: "APPS",
+                icon: Icon(
+                  Icons.apps_outlined,
+                  color: AppColors.accent,
+                ),
+                pathPage: "/main_screen/apps"),
           ),
-          GestureDetector(
-            onTap: () =>
-                Navigator.of(context).pushNamed("/main_screen/inventory"),
-            child: const SyntPageItem(
-              name: "INVENTORY",
-              icon: Icon(
-                Icons.inventory,
-                color: AppColors.accent,
-              ),
+          const SyntPageItem(
+            name: "INVENTORY",
+            icon: Icon(
+              Icons.inventory,
+              color: AppColors.accent,
             ),
+            pathPage: "/main_screen/inventory",
           ),
         ],
       ),

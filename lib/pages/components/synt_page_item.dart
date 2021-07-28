@@ -4,43 +4,58 @@ import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
-class SyntPageItem extends StatelessWidget {
+class SyntPageItem extends StatefulWidget {
   final String name;
   final Icon icon;
+  final String pathPage;
+
   const SyntPageItem({
     Key? key,
     required this.name,
     required this.icon,
+    required this.pathPage,
   }) : super(key: key);
 
+  @override
+  State<SyntPageItem> createState() => _SyntPageItemState();
+}
+
+class _SyntPageItemState extends State<SyntPageItem> {
+  static bool isNotPress = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        children: [
-          CustomContainer(
-              width: 45,
+      child: GestureDetector(
+        onTap: () => Navigator.of(context).pushNamed(widget.pathPage),
+        onTapDown: (TapDownDetails t) => setState(() => isNotPress = false),
+        onTapUp: (TapUpDetails t) => setState(() => isNotPress = true),
+        onTapCancel: () => setState(() => isNotPress = true),
+        child: Row(
+          children: [
+            CustomContainer(
+                width: isNotPress ? 45 : 35,
+                height: 45,
+                child: widget.icon,
+                crossAxisAlignment: CrossAxisAlignment.center),
+            AppPaddings.defaultSizedBoxWidth,
+            Expanded(
+                child: CustomContainer(
               height: 45,
-              child: icon,
-              crossAxisAlignment: CrossAxisAlignment.center),
-          AppPaddings.defaultSizedBoxWidth,
-          Expanded(
-              child: CustomContainer(
-            height: 45,
-            child: Text(
-              name,
-              style: AppTextStyle.textStyleHeader,
-            ),
-            crossAxisAlignment: CrossAxisAlignment.center,
-          )),
-          AppPaddings.defaultSizedBoxWidth,
-          CustomContainer(
-              width: 45,
-              height: 45,
-              child: icon,
-              crossAxisAlignment: CrossAxisAlignment.center)
-        ],
+              child: Text(
+                widget.name,
+                style: AppTextStyle.textStyleHeader,
+              ),
+              crossAxisAlignment: CrossAxisAlignment.center,
+            )),
+            AppPaddings.defaultSizedBoxWidth,
+            CustomContainer(
+                width: isNotPress ? 45 : 35,
+                height: 45,
+                child: widget.icon,
+                crossAxisAlignment: CrossAxisAlignment.center)
+          ],
+        ),
       ),
     );
   }

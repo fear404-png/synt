@@ -26,7 +26,9 @@ class StoreTabWidget extends StatelessWidget {
         onTap: () {
           BlocProvider.of<StoreBloc>(context).add(event);
         },
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.linearToEaseOut,
           padding: AppPaddings.defaultPadding,
           decoration: BoxDecoration(
             color: isPress ? AppColors.accent : AppColors.background,

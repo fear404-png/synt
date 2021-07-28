@@ -36,7 +36,9 @@ class CustomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.linearToEaseOut,
       width: width,
       height: height,
       color: AppColors.background,
@@ -48,7 +50,7 @@ class CustomContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [AppSvg.arrowTopLeft, AppSvg.arrowTopRight],
           ),
-           child,
+          child,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [AppSvg.arrowBottomLeft, AppSvg.arrowBottomRight],

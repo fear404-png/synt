@@ -12,7 +12,7 @@ import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
 
 //верстка айтема магазина
-class StoreItemWidget extends StatelessWidget {
+class StoreItemWidget extends StatefulWidget {
   final Icon icon;
   final String title;
   final String description;
@@ -29,6 +29,12 @@ class StoreItemWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<StoreItemWidget> createState() => _StoreItemWidgetState();
+}
+
+class _StoreItemWidgetState extends State<StoreItemWidget> {
+  bool isNotPress = true;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -38,7 +44,7 @@ class StoreItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             width: 45,
             height: 45,
-            child: icon,
+            child: widget.icon,
           ),
           AppPaddings.defaultSizedBoxWidth,
           Expanded(
@@ -50,12 +56,12 @@ class StoreItemWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "$title",
+                          "${widget.title}",
                           style: AppTextStyle.textStyleHeader,
                           maxLines: 1,
                         ),
                         Text(
-                          "$description",
+                          "${widget.description}",
                           style: AppTextStyle.textStyle,
                           maxLines: 1,
                         ),
@@ -66,28 +72,40 @@ class StoreItemWidget extends StatelessWidget {
           AppPaddings.defaultSizedBoxWidth,
           GestureDetector(
             onTap: () {
-              if (Player.btc >= price) {
-                BlocProvider.of<StoreBloc>(context).add(BuyItem(type));
-                BlocProvider.of<AppbarBloc>(context).add(RemoveBtc(price));
+              if (Player.btc >= widget.price) {
+                BlocProvider.of<StoreBloc>(context).add(BuyItem(widget.type));
+                BlocProvider.of<AppbarBloc>(context)
+                    .add(RemoveBtc(widget.price));
                 Scaffold.of(context).showSnackBar(SnackBar(
-                    duration: Duration(milliseconds: 1200),
+                    duration: const Duration(milliseconds: 1200),
                     backgroundColor: AppColors.background,
                     content: Text(
-                      "You have purchased a $title for $price btc",
+                      "You have purchased a ${widget.title} for ${widget.price} btc",
+                      style: AppTextStyle.textStyleHeader,
+                    )));
+              } else {
+                Scaffold.of(context).showSnackBar(const SnackBar(
+                    duration: Duration(milliseconds: 600),
+                    backgroundColor: AppColors.background,
+                    content: Text(
+                      "Not enough money",
                       style: AppTextStyle.textStyleHeader,
                     )));
               }
             },
+            onTapDown: (TapDownDetails t) => setState(() => isNotPress = false),
+            onTapUp: (TapUpDetails t) => setState(() => isNotPress = true),
+            onTapCancel: () => setState(() => isNotPress = true),
             child: CustomContainer(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 child: Container(
                   child: Text(
-                    "$price BTC",
+                    isNotPress ? "${widget.price} BTC" : "BUY",
                     style: AppTextStyle.textStyle,
                     maxLines: 1,
                   ),
                 ),
-                width: 100,
+                width: isNotPress ? 100 : 120,
                 height: 45),
           ),
         ],

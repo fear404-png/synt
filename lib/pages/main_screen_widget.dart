@@ -88,6 +88,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
         ),
         //создание нижней навигации
         bottomNavigationBar: BottomNavigationBar(
+          selectedLabelStyle: AppTextStyle.textStyleHeader,
           iconSize: 30,
           items: const [
             BottomNavigationBarItem(

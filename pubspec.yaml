@@ -83,5 +83,10 @@ flutter:
     - family: IBM
       fonts:
         - asset: assets/fonts/3270-Medium.ttf
+
+    - family: Console
+      fonts:
+        - asset: assets/fonts/Inconsola-Regular.otf
+        - asset: assets/fonts/Inconsola-Bold.otf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

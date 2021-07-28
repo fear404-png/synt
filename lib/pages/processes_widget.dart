@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:synt/blocs/processes_bloc/processes_bloc.dart';
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
@@ -12,14 +14,17 @@ class ProcessesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.defaultPadding,
-      child: Column(
-        children: [
-          ProcessesTitle(),
-          AppPaddings.defaultSizedBoxHeight,
-          Expanded(child: ProcessesItemsWidget())
-        ],
+    return BlocProvider(
+      create: (context) => ProcessesBloc(),
+      child: Padding(
+        padding: AppPaddings.defaultPadding,
+        child: Column(
+          children: [
+            ProcessesTitle(),
+            AppPaddings.defaultSizedBoxHeight,
+            Expanded(child: ProcessesItemsWidget())
+          ],
+        ),
       ),
     );
   }

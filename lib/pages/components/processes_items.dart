@@ -12,26 +12,24 @@ class ProcessesItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProcessesBloc(),
-      child: BlocBuilder<ProcessesBloc, ProcessesState>(
-        builder: (context, state) {
-          return ListView.builder(
-              itemCount: state.items.length,
-              itemBuilder: (context, index) {
-                ProcessesItem item = state.items[index];
+    return BlocBuilder<ProcessesBloc, ProcessesState>(
+      builder: (context, state) {
+        List<ProcessesItem> items = state.itemsRun + state.itemsFinished;
+        return ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              ProcessesItem item = items[index];
 
-                return Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: ProcessesItemWidget(
-                    title: item.name,
-                    ip: item.ip,
-                    index: index,
-                  ),
-                );
-              });
-        },
-      ),
+              return Padding(
+                padding: const EdgeInsets.all(5),
+                child: ProcessesItemWidget(
+                  title: item.name,
+                  ip: item.ip,
+                  index: index,
+                ),
+              );
+            });
+      },
     );
   }
 }

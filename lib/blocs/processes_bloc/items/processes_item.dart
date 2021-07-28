@@ -23,8 +23,9 @@ class ProcessesItem {
   }
 
   start() {
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    _timer = Timer.periodic(Duration(milliseconds: 400), (Timer timer) {
       if (duration == 0) {
+        ProcessesBloc().add(FinalProcess(this));
         timer.cancel();
       } else {
         duration--;

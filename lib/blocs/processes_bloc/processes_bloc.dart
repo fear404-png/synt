@@ -14,7 +14,7 @@ part 'processes_state.dart';
 class ProcessesBloc extends Bloc<ProcessesEvent, ProcessesState> {
   static List<ProcessesItem> _itemsRun = [];
   static List<ProcessesItem> _itemsFinished = [];
-  ProcessesBloc() : super(ProcessesInitial(_itemsRun));
+  ProcessesBloc() : super(ProcessesInitial(_itemsRun, _itemsFinished));
 
   @override
   Stream<ProcessesState> mapEventToState(
@@ -31,14 +31,22 @@ class ProcessesBloc extends Bloc<ProcessesEvent, ProcessesState> {
           _duration)
         ..start());
 
-      yield ProcessesInitial(_itemsRun);
+      yield ProcessesInitial(_itemsRun, _itemsFinished);
     }
 
     if (event is Tick) {
       Future.delayed(Duration(seconds: 1)).then((value) {
         add(Tick());
       });
-      yield ProcessesInitial(_itemsRun);
+
+      yield ProcessesInitial(_itemsRun, _itemsFinished);
+    }
+
+    if (event is FinalProcess) {
+      _itemsRun.remove(event.item);
+      _itemsFinished.add(event.item);
+      print("finish ${_itemsFinished.length} run ${_itemsRun.length}");
+      yield ProcessesInitial(_itemsRun, _itemsFinished);
     }
   }
 }

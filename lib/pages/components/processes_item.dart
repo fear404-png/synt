@@ -59,7 +59,7 @@ class ProcessesItemWidget extends StatelessWidget {
             CustomContainer(
                 width: 60,
                 height: 60,
-                child: state.items[index].duration == 0
+                child: state.itemsRun.length <= index
                     ? Text(
                         "DONE",
                         style: AppTextStyle.textStyleHeader,
@@ -75,7 +75,7 @@ class ProcessesItemWidget extends StatelessWidget {
                                 top: 11,
                                 right: 7,
                                 child: Text(
-                                  "${(100 - state.items[index].duration / (state.items[index].d! / 100)).floor()}%",
+                                  "${(100 - state.itemsRun[index].duration / (state.itemsRun[index].d! / 100)).floor()}%",
                                   style: AppTextStyle.textStyle,
                                 )),
                           )

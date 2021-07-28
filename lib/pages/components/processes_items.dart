@@ -18,7 +18,7 @@ class ProcessesItemsWidget extends StatelessWidget {
         return ListView.builder(
             itemCount: items.length,
             itemBuilder: (context, index) {
-              ProcessesItem item = items[index];
+              ProcessesItem item = items[items.length - 1 - index];
 
               return Padding(
                 padding: const EdgeInsets.all(5),

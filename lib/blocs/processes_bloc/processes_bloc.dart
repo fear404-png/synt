@@ -1,19 +1,20 @@
 import 'dart:async';
+
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:synt/blocs/processes_item_bloc/items/processes_item.dart';
-import 'package:synt/pages/components/processes_item.dart';
-import 'package:synt/theme/app_colors.dart';
+
+import 'items/processes_item.dart';
 
 part 'processes_event.dart';
 part 'processes_state.dart';
 
 class ProcessesBloc extends Bloc<ProcessesEvent, ProcessesState> {
-  static List<ProcessesItem> _items = [];
-  ProcessesBloc() : super(ProcessesInitial(_items));
+  static List<ProcessesItem> _itemsRun = [];
+  static List<ProcessesItem> _itemsFinished = [];
+  ProcessesBloc() : super(ProcessesInitial(_itemsRun));
 
   @override
   Stream<ProcessesState> mapEventToState(
@@ -21,13 +22,16 @@ class ProcessesBloc extends Bloc<ProcessesEvent, ProcessesState> {
   ) async* {
     // TODO: implement mapEventToState
     if (event is AddProcess) {
-      _items.add(ProcessesItem(
+      int _duration = Random().nextInt(100);
+
+      _itemsRun.add(ProcessesItem(
           "Random process",
-          "${Random().nextInt(999)}.${Random().nextInt(999)}.${Random().nextInt(999)}.",
+          "${Random().nextInt(999)}.${Random().nextInt(999)}.${Random().nextInt(999)}.${Random().nextInt(999)}",
           Icon(Icons.run_circle),
-          Random().nextInt(100)));
-      print(_items);
-      yield ProcessesInitial(_items);
+          _duration)
+        ..start());
+
+      yield ProcessesInitial(_itemsRun);
     }
   }
 }

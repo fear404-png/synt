@@ -4,3 +4,5 @@ part of 'processes_bloc.dart';
 abstract class ProcessesEvent {}
 
 class AddProcess extends ProcessesEvent {}
+
+class Tick extends ProcessesEvent {}

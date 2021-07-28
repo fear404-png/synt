@@ -18,7 +18,7 @@ class ProcessesWidget extends StatelessWidget {
         children: [
           ProcessesTitle(),
           AppPaddings.defaultSizedBoxHeight,
-          Expanded(child: ProcessesItems())
+          Expanded(child: ProcessesItemsWidget())
         ],
       ),
     );

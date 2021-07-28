@@ -25,23 +25,25 @@ class CustomContainer extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? height;
+  Color? color = AppColors.background;
   final CrossAxisAlignment crossAxisAlignment;
-  const CustomContainer(
+  CustomContainer(
       {Key? key,
       required this.child,
       this.width,
       this.height,
-      required this.crossAxisAlignment})
+      required this.crossAxisAlignment,
+      this.color})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      curve: Curves.linearToEaseOut,
+      curve: Curves.fastLinearToSlowEaseIn,
       width: width,
       height: height,
-      color: AppColors.background,
+      color: color,
       child: Column(
         crossAxisAlignment: this.crossAxisAlignment,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

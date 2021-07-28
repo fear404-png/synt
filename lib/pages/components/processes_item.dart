@@ -26,7 +26,7 @@ class ProcessesItemWidget extends StatelessWidget {
       builder: (context, state) {
         return Row(
           children: [
-            const CustomContainer(
+            CustomContainer(
                 width: 60,
                 height: 60,
                 child: Icon(

@@ -78,7 +78,7 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
                     .add(RemoveBtc(widget.price));
                 Scaffold.of(context).showSnackBar(SnackBar(
                     duration: const Duration(milliseconds: 1200),
-                    backgroundColor: AppColors.background,
+                    backgroundColor: Colors.transparent,
                     content: Text(
                       "You have purchased a ${widget.title} for ${widget.price} btc",
                       style: AppTextStyle.textStyleHeader,
@@ -97,11 +97,14 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
             onTapUp: (TapUpDetails t) => setState(() => isNotPress = true),
             onTapCancel: () => setState(() => isNotPress = true),
             child: CustomContainer(
+                color: isNotPress ? AppColors.background : AppColors.accent,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 child: Container(
                   child: Text(
                     isNotPress ? "${widget.price} BTC" : "BUY",
-                    style: AppTextStyle.textStyle,
+                    style: isNotPress
+                        ? AppTextStyle.textStyle
+                        : AppTextStyle.negativeTextStyle,
                     maxLines: 1,
                   ),
                 ),

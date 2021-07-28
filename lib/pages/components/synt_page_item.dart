@@ -34,22 +34,27 @@ class _SyntPageItemState extends State<SyntPageItem> {
         child: Row(
           children: [
             CustomContainer(
+                color: isNotPress ? AppColors.background : AppColors.accent,
                 width: isNotPress ? 45 : 35,
                 height: 45,
                 child: widget.icon,
                 crossAxisAlignment: CrossAxisAlignment.center),
-            AppPaddings.defaultSizedBoxWidth,
+            isNotPress ? AppPaddings.defaultSizedBoxWidth : SizedBox(),
             Expanded(
                 child: CustomContainer(
+              color: isNotPress ? AppColors.background : AppColors.accent,
               height: 45,
               child: Text(
                 widget.name,
-                style: AppTextStyle.textStyleHeader,
+                style: isNotPress
+                    ? AppTextStyle.textStyleHeader
+                    : AppTextStyle.negativeTextStyle,
               ),
               crossAxisAlignment: CrossAxisAlignment.center,
             )),
-            AppPaddings.defaultSizedBoxWidth,
+            isNotPress ? AppPaddings.defaultSizedBoxWidth : SizedBox(),
             CustomContainer(
+                color: isNotPress ? AppColors.background : AppColors.accent,
                 width: isNotPress ? 45 : 35,
                 height: 45,
                 child: widget.icon,

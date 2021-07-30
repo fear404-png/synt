@@ -6,44 +6,49 @@ import 'package:synt/blocs/store_bloc/items/cpu.dart';
 import 'package:synt/blocs/store_bloc/items/memory.dart';
 import 'package:synt/blocs/store_bloc/items/network.dart';
 import 'package:synt/blocs/store_bloc/items/ram.dart';
-import 'package:synt/data/device.dart';
+import 'package:synt/data/data.dart';
 
 part 'device_event.dart';
 part 'device_state.dart';
 
 class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
-  RAM ram = Device.ram;
-  Memory memory = Device.memory;
-  CPU cpu = Device.cpu;
-  Network network = Device.network;
+  RAM ram = UserData.userData.installedRam;
+  Memory memory = UserData.userData.installedMemory;
+  CPU cpu = UserData.userData.installedCpu;
+  Network network = UserData.userData.installedNetwork;
   DeviceBloc()
       : super(DeviceInitial(
-            Device.ram, Device.memory, Device.cpu, Device.network));
+            UserData.userData.installedRam,
+            UserData.userData.installedMemory,
+            UserData.userData.installedCpu,
+            UserData.userData.installedNetwork));
 
   @override
   Stream<DeviceState> mapEventToState(
     DeviceEvent event,
   ) async* {
     if (event is ChangeRam) {
-      Device.ram = event.ram;
-      ram = Device.ram;
-      print(ram.ram);
+      UserData.userData.setRam(event.ram);
+      ram = UserData.userData.installedRam;
 
       yield DeviceInitial(ram, memory, cpu, network);
     }
     if (event is ChangeMemory) {
-      Device.memory = event.memory;
-      memory = Device.memory;
+      UserData.userData.setMemory(event.memory);
+      memory = UserData.userData.installedMemory;
+
       yield DeviceInitial(ram, memory, cpu, network);
     }
     if (event is ChangeCpu) {
-      Device.cpu = event.cpu;
-      cpu = Device.cpu;
+      UserData.userData.setCpu(event.cpu);
+      cpu = UserData.userData.installedCpu;
+
       yield DeviceInitial(ram, memory, cpu, network);
     }
     if (event is ChangeNetwork) {
-      Device.network = event.network;
-      network = Device.network;
+      UserData.userData.setNetwork(event.network);
+      network = UserData.userData.installedNetwork;
+
       yield DeviceInitial(ram, memory, cpu, network);
     }
   }

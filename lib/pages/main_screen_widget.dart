@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
-import 'package:synt/data/player.dart';
+import 'package:synt/data/data.dart';
 
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/theme/app_info.dart';
@@ -81,7 +81,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
                     style: AppTextStyle.textStyleHeader,
                   ),
                   Text(
-                    Player.userIp,
+                    UserData.userData.ip,
                     style: AppTextStyle.textStyleHeader,
                   )
                 ],

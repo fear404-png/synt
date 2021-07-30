@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:synt/data/player.dart';
+import 'package:synt/data/data.dart';
 
 part 'appbar_event.dart';
 part 'appbar_state.dart';
 
 class AppbarBloc extends Bloc<AppbarEvent, AppbarState> {
-  int btc = Player.btc;
+  int btc = UserData.userData.btc;
   AppbarBloc() : super(AppbarInitial(0));
 
   @override
@@ -16,13 +16,13 @@ class AppbarBloc extends Bloc<AppbarEvent, AppbarState> {
     AppbarEvent event,
   ) async* {
     if (event is AddBtc) {
-      Player.btc += event.btc;
-      btc = Player.btc;
+      UserData.userData.btc += event.btc;
+      btc = UserData.userData.btc;
       yield AppbarInitial(btc);
     }
     if (event is RemoveBtc) {
-      Player.btc -= event.btc;
-      btc = Player.btc;
+      UserData.userData.btc -= event.btc;
+      btc = UserData.userData.btc;
       yield AppbarInitial(btc);
     }
   }

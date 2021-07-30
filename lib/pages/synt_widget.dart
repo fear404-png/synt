@@ -32,6 +32,14 @@ class SyntWidget extends StatelessWidget {
             ),
             pathPage: "/main_screen/inventory",
           ),
+          const SyntPageItem(
+            name: "SCAN",
+            icon: Icon(
+              Icons.search,
+              color: AppColors.accent,
+            ),
+            pathPage: "/main_screen/scan",
+          ),
         ],
       ),
     );

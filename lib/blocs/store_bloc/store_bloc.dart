@@ -9,13 +9,14 @@ import 'package:synt/blocs/store_bloc/items/antivirus.dart';
 import 'package:synt/blocs/store_bloc/items/bypasser.dart';
 import 'package:synt/blocs/store_bloc/items/cpu.dart';
 import 'package:synt/blocs/store_bloc/items/firewall.dart';
+import 'package:synt/blocs/store_bloc/items/hardware.dart';
 import 'package:synt/blocs/store_bloc/items/network.dart';
 import 'package:synt/blocs/store_bloc/items/password_cracker.dart';
 import 'package:synt/blocs/store_bloc/items/password_encryptor.dart';
+import 'package:synt/blocs/store_bloc/items/software.dart';
 import 'package:synt/blocs/store_bloc/items/spam.dart';
 import 'package:synt/blocs/store_bloc/items/spyware.dart';
-import 'package:synt/data/inventory.dart';
-import 'package:synt/data/player.dart';
+import 'package:synt/data/data.dart';
 
 import 'items/memory.dart';
 import 'items/ram.dart';
@@ -86,20 +87,26 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
     Spyware(5, 53000, "Monitors the actions of the device"),
   ];
 
+  static List<Hardware> _hardItems = [];
+  static List<Software> _softItems = [];
+
   StoreBloc()
       : super(StoreInitial(
-          _itemsHardwareRam,
-          _itemsHardwareMemory,
-          _itemsHardwareCpu,
-          _itemsHardwareNetwork,
-          _itemsSoftwareAntivirus,
-          _itemsSoftwareBypasser,
-          _itemsSoftwareFirewall,
-          _itemsSoftwarePasswordCracker,
-          _itemsSoftwarePasswordEncryptor,
-          _itemsSoftwareSpam,
-          _itemsSoftwareSpyware,
-        ));
+          _hardItems,
+          _softItems,
+        )) {
+    _hardItems.addAll(_itemsHardwareRam);
+    _hardItems.addAll(_itemsHardwareMemory);
+    _hardItems.addAll(_itemsHardwareCpu);
+    _hardItems.addAll(_itemsHardwareNetwork);
+    _softItems.addAll(_itemsSoftwareAntivirus);
+    _softItems.addAll(_itemsSoftwareBypasser);
+    _softItems.addAll(_itemsSoftwareFirewall);
+    _softItems.addAll(_itemsSoftwarePasswordCracker);
+    _softItems.addAll(_itemsSoftwarePasswordEncryptor);
+    _softItems.addAll(_itemsSoftwareSpam);
+    _softItems.addAll(_itemsSoftwareSpyware);
+  }
 
   @override
   Stream<StoreState> mapEventToState(
@@ -107,98 +114,35 @@ class StoreBloc extends Bloc<StoreEvent, StoreState> {
   ) async* {
     if (event is ShowHardware) {
       yield StoreShowHardware(
-        _itemsHardwareRam,
-        _itemsHardwareMemory,
-        _itemsHardwareCpu,
-        _itemsHardwareNetwork,
-        _itemsSoftwareAntivirus,
-        _itemsSoftwareBypasser,
-        _itemsSoftwareFirewall,
-        _itemsSoftwarePasswordCracker,
-        _itemsSoftwarePasswordEncryptor,
-        _itemsSoftwareSpam,
-        _itemsSoftwareSpyware,
+        _hardItems,
+        _softItems,
       );
     }
     if (event is ShowSoftware) {
       yield StoreShowSoftware(
-        _itemsHardwareRam,
-        _itemsHardwareMemory,
-        _itemsHardwareCpu,
-        _itemsHardwareNetwork,
-        _itemsSoftwareAntivirus,
-        _itemsSoftwareBypasser,
-        _itemsSoftwareFirewall,
-        _itemsSoftwarePasswordCracker,
-        _itemsSoftwarePasswordEncryptor,
-        _itemsSoftwareSpam,
-        _itemsSoftwareSpyware,
+        _hardItems,
+        _softItems,
       );
     }
     if (event is BuyItem) {
-      if (event.type is RAM) {
-        Inventory.inventoryItems.add(event.type);
-        _itemsHardwareRam.remove(event.type);
-      } else if (event.type is Memory) {
-        Inventory.inventoryItems.add(event.type);
-        _itemsHardwareMemory.remove(event.type);
-      } else if (event.type is CPU) {
-        Inventory.inventoryItems.add(event.type);
-        _itemsHardwareCpu.remove(event.type);
-      } else if (event.type is Network) {
-        Inventory.inventoryItems.add(event.type);
-        _itemsHardwareNetwork.remove(event.type);
-      } else if (event.type is Antivirus) {
+      if (event.type is Hardware) {
+        UserData.userData.inventoryItems.add(event.type);
+        _hardItems.remove(event.type);
+      } else if (event.type is Software) {
         AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwareAntivirus.remove(event.type);
-      } else if (event.type is Bypasser) {
-        AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwareBypasser.remove(event.type);
-      } else if (event.type is Firewall) {
-        AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwareFirewall.remove(event.type);
-      } else if (event.type is PasswordCracker) {
-        AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwarePasswordCracker.remove(event.type);
-      } else if (event.type is PasswordEncryptor) {
-        AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwarePasswordEncryptor.remove(event.type);
-      } else if (event.type is Spam) {
-        AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwareSpam.remove(event.type);
-      } else if (event.type is Spyware) {
-        AppsBloc().add(AddItem(event.type, event.type.lvl));
-        _itemsSoftwareSpyware.remove(event.type);
+        _softItems.remove(event.type);
       }
 
       if (state is StoreShowHardware) {
         yield StoreShowHardware(
-          _itemsHardwareRam,
-          _itemsHardwareMemory,
-          _itemsHardwareCpu,
-          _itemsHardwareNetwork,
-          _itemsSoftwareAntivirus,
-          _itemsSoftwareBypasser,
-          _itemsSoftwareFirewall,
-          _itemsSoftwarePasswordCracker,
-          _itemsSoftwarePasswordEncryptor,
-          _itemsSoftwareSpam,
-          _itemsSoftwareSpyware,
+          _hardItems,
+          _softItems,
         );
       }
       if (state is StoreShowSoftware) {
         yield StoreShowSoftware(
-          _itemsHardwareRam,
-          _itemsHardwareMemory,
-          _itemsHardwareCpu,
-          _itemsHardwareNetwork,
-          _itemsSoftwareAntivirus,
-          _itemsSoftwareBypasser,
-          _itemsSoftwareFirewall,
-          _itemsSoftwarePasswordCracker,
-          _itemsSoftwarePasswordEncryptor,
-          _itemsSoftwareSpam,
-          _itemsSoftwareSpyware,
+          _hardItems,
+          _softItems,
         );
       }
     }

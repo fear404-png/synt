@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:synt/data/inventory.dart';
+import 'package:synt/data/data.dart';
 
 part 'inventory_event.dart';
 part 'inventory_state.dart';
 
 class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
-  static List items = Inventory.inventoryItems;
+  static List items = UserData.userData.inventoryItems;
   InventoryBloc() : super(InventoryInitial(items));
 
   @override
@@ -16,8 +16,8 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
     InventoryEvent event,
   ) async* {
     if (event is InventoryAddItem) {
-      Inventory.inventoryItems.add(event.item);
-      items = Inventory.inventoryItems;
+      UserData.userData.inventoryItems.add(event.item);
+      items = UserData.userData.inventoryItems;
     }
   }
 }

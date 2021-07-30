@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
-import 'package:synt/data/player.dart';
+import 'package:synt/data/data.dart';
+
 import 'package:synt/pages/main_screen_widget.dart';
 import 'package:synt/theme/app_colors.dart';
 
@@ -72,13 +73,13 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
           AppPaddings.defaultSizedBoxWidth,
           GestureDetector(
             onTap: () {
-              if (Player.btc >= widget.price) {
+              if (UserData.userData.btc >= widget.price) {
                 BlocProvider.of<StoreBloc>(context).add(BuyItem(widget.type));
                 BlocProvider.of<AppbarBloc>(context)
                     .add(RemoveBtc(widget.price));
                 Scaffold.of(context).showSnackBar(SnackBar(
-                    duration: const Duration(milliseconds: 1200),
-                    backgroundColor: Colors.transparent,
+                    duration: const Duration(milliseconds: 2200),
+                    backgroundColor: AppColors.background,
                     content: Text(
                       "You have purchased a ${widget.title} for ${widget.price} btc",
                       style: AppTextStyle.textStyleHeader,

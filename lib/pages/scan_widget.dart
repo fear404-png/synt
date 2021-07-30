@@ -20,10 +20,11 @@ class ScanWidget extends StatelessWidget {
       body: Padding(
         padding: AppPaddings.defaultPadding,
         child: ListView.builder(
-            itemCount: UserData.enemyUsers.length,
+            itemCount: UserData.enemyUsersList.length,
             itemBuilder: (context, index) {
               return ScanItemWidget(
-                ip: UserData.enemyUsers[index].ip,
+                ip: UserData.enemyUsersList[index].ip,
+                index: index,
               );
             }),
       ),

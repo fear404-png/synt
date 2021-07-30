@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:synt/data/data.dart';
 import 'package:synt/pages/apps_widget.dart';
+import 'package:synt/pages/enemy_page.dart';
 import 'package:synt/pages/hardware_info.dart';
 import 'package:synt/pages/inventory_widget.dart';
 import 'package:synt/pages/scan_widget.dart';
@@ -33,6 +35,7 @@ class _MyAppState extends State<MyApp> {
         "/main_screen/inventory": (context) => const InventoryWidget(),
         "/main_screen/hardware_info": (context) => const HardwareInfo(),
         "/main_screen/scan": (context) => const ScanWidget(),
+        "/main_screen/scan/enemy": (context) => const EnemyPage(),
       },
       initialRoute: "/main_screen",
     );

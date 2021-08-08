@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:synt/data/data.dart';
+
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
@@ -20,10 +20,10 @@ class ScanWidget extends StatelessWidget {
       body: Padding(
         padding: AppPaddings.defaultPadding,
         child: ListView.builder(
-            itemCount: UserData.enemyUsersList.length,
+            itemCount: 4,
             itemBuilder: (context, index) {
               return ScanItemWidget(
-                ip: UserData.enemyUsersList[index].ip,
+                ip: "fuck this",
                 index: index,
               );
             }),

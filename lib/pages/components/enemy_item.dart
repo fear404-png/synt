@@ -27,7 +27,7 @@ class _EnemyItemState extends State<EnemyItem> {
           onTapDown: (TapDownDetails t) => setState(() => isNotPress = false),
           onTapUp: (TapUpDetails t) => setState(() => isNotPress = true),
           onTapCancel: () => setState(() => isNotPress = true),
-          child: CustomContainer(
+          child: CustumContainer(
               color: isNotPress ? AppColors.background : AppColors.accent,
               width: 120,
               height: 120,

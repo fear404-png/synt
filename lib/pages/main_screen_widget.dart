@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
-import 'package:synt/data/data.dart';
+
+import 'package:synt/blocs/user_bloc/user_bloc.dart';
 
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/theme/app_info.dart';
@@ -66,72 +66,65 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppbarBloc(),
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
-          title: BlocBuilder<AppbarBloc, AppbarState>(
-            builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "${state.btc} BTC",
-                    style: AppTextStyle.textStyleHeader,
-                  ),
-                  Text(
-                    UserData.userData.ip,
-                    style: AppTextStyle.textStyleHeader,
-                  )
-                ],
-              );
-            },
-          ),
-          backgroundColor: AppColors.background,
-        ),
-        body: PageView(
-          children: _mainScreenPages,
-          scrollDirection: Axis.horizontal,
-          controller: pageController,
-          onPageChanged: onPageChanged,
-        ),
-        //создание нижней навигации
-        bottomNavigationBar: BottomNavigationBar(
-          selectedLabelStyle: AppTextStyle.textStyleHeader,
-          iconSize: 30,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.device_hub_sharp),
-              label: "Device",
-              backgroundColor: AppColors.background,
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "${BlocProvider.of<UserBloc>(context).state.publicBalance} BTC",
+              style: AppTextStyle.textStyleHeader,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.store),
-              label: "Store",
-              backgroundColor: AppColors.background,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.mobile_screen_share),
-              label: "synt",
-              backgroundColor: AppColors.background,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.wifi_protected_setup_sharp),
-              label: "Processes",
-              backgroundColor: AppColors.background,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.message,
-              ),
-              label: "DEBUG",
-              backgroundColor: AppColors.background,
-            ),
+            Text(
+              BlocProvider.of<UserBloc>(context).state.ip,
+              style: AppTextStyle.textStyleHeader,
+            )
           ],
-          onTap: onTap,
-          currentIndex: _selectedTab,
         ),
+        backgroundColor: AppColors.background,
+      ),
+      body: PageView(
+        children: _mainScreenPages,
+        scrollDirection: Axis.horizontal,
+        controller: pageController,
+        onPageChanged: onPageChanged,
+      ),
+      //создание нижней навигации
+      bottomNavigationBar: BottomNavigationBar(
+        selectedLabelStyle: AppTextStyle.textStyleHeader,
+        iconSize: 30,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.device_hub_sharp),
+            label: "Device",
+            backgroundColor: AppColors.background,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: "Store",
+            backgroundColor: AppColors.background,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mobile_screen_share),
+            label: "synt",
+            backgroundColor: AppColors.background,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wifi_protected_setup_sharp),
+            label: "Processes",
+            backgroundColor: AppColors.background,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.message,
+            ),
+            label: "DEBUG",
+            backgroundColor: AppColors.background,
+          ),
+        ],
+        onTap: onTap,
+        currentIndex: _selectedTab,
       ),
     );
   }

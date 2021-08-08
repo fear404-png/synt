@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:synt/blocs/store_bloc/store_bloc.dart';
+
+import 'package:synt/theme/app_colors.dart';
+import 'package:synt/until/app_font_style.dart';
 
 import 'package:synt/until/app_paddings.dart';
 
-import 'components/store_background.dart';
-import 'components/store_items.dart';
+import 'components/store_items_hardware.dart';
 
-import 'components/store_tabs.dart';
+import 'components/store_items_software.dart';
 import 'components/store_vignette.dart';
 
 class StoreWidget extends StatefulWidget {
@@ -21,24 +21,34 @@ class _StoreWidgetState extends State<StoreWidget>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StoreBloc()..add(ShowSoftware()),
+    return DefaultTabController(
+      length: 2,
       child: Padding(
         padding: AppPaddings.defaultPadding,
         child: Column(
           children: [
             //табы с выбором категорий товаров
-            const StoreTabsWidget(),
+            const TabBar(
+              indicatorColor: AppColors.accent,
+              tabs: [
+                Text(
+                  "HARDWARE",
+                  style: AppTextStyle.textStyleHeader,
+                ),
+                Text("SOFTWARE", style: AppTextStyle.textStyleHeader)
+              ],
+            ),
             AppPaddings.defaultSizedBoxHeight,
             Expanded(
               child: Stack(
-                children: [
-                  //задний градиент который создает чет типо полосок
-                  const StoreBackground(),
+                children: const [
                   //генерация айтемов в магазине
-                  StoreItemsWidget(),
+                  TabBarView(children: [
+                    StoreItemsHardwareWidget(),
+                    StoreItemsSoftwareWidget(),
+                  ]),
                   //затемнение сверху всех айтемов
-                  const StoreVignette()
+                  StoreVignette()
                 ],
               ),
             ),

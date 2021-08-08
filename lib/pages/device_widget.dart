@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synt/blocs/device_bloc/device_bloc.dart';
+import 'package:synt/data/hardware.dart';
 import 'package:synt/pages/components/system_monitor_label.dart';
 import 'package:synt/theme/app_colors.dart';
 
@@ -15,49 +16,44 @@ class DeviceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DeviceBloc(),
-      child: Padding(
-        padding: AppPaddings.defaultPadding,
-        child: BlocBuilder<DeviceBloc, DeviceState>(
-          builder: (context, state) {
-            return ListView(
-              children: [
-                // Основное окно информации
-                const SystemBar(),
-                AppPaddings.defaultSizedBoxHeight,
-                // Просто плашка с названием
-                const SystemMonitorLabel(),
-                AppPaddings.defaultSizedBoxHeight,
-                // Показывает какие слоты установлены и их состояние
-                SystemMonitorList(
-                  name: "RAM",
-                  info: "RAM ${state.ram.ram} GB",
-                  icon: state.ram.icon,
-                  type: state.ram,
-                ),
-                AppPaddings.defaultSizedBoxHeight,
-                SystemMonitorList(
-                    name: "Memory",
-                    info: "Memory ${state.memory.memory} GB",
-                    icon: state.memory.icon,
-                    type: state.memory),
-                AppPaddings.defaultSizedBoxHeight,
-                SystemMonitorList(
-                    name: "CPU",
-                    info: "CPU ${state.cpu.gflops} GFLOPS",
-                    icon: state.cpu.icon,
-                    type: state.cpu),
-                AppPaddings.defaultSizedBoxHeight,
-                SystemMonitorList(
-                    name: "Network",
-                    info: "${state.network.speed} Mbit/s",
-                    icon: state.network.icon,
-                    type: state.network),
-              ],
-            );
-          },
-        ),
+    RAM ram = BlocProvider.of<DeviceBloc>(context).state.installedRam;
+    Memory memory = BlocProvider.of<DeviceBloc>(context).state.installedMemory;
+    CPU cpu = BlocProvider.of<DeviceBloc>(context).state.installedCpu;
+    Network network =
+        BlocProvider.of<DeviceBloc>(context).state.installedNetwork;
+    return Padding(
+      padding: AppPaddings.defaultPadding,
+      child: ListView(
+        children: [
+          // Основное окно информации
+          const SystemBar(),
+          AppPaddings.defaultSizedBoxHeight,
+          // Просто плашка с названием
+          const SystemMonitorLabel(),
+          AppPaddings.defaultSizedBoxHeight,
+          // Показывает какие слоты установлены и их состояние
+          SystemMonitorList(
+            name: "RAM",
+            info: ram.name,
+            icon: ram.icon,
+            type: ram,
+          ),
+          AppPaddings.defaultSizedBoxHeight,
+          SystemMonitorList(
+              name: "Memory",
+              info: memory.name,
+              icon: memory.icon,
+              type: memory),
+          AppPaddings.defaultSizedBoxHeight,
+          SystemMonitorList(
+              name: "CPU", info: cpu.name, icon: cpu.icon, type: cpu),
+          AppPaddings.defaultSizedBoxHeight,
+          SystemMonitorList(
+              name: "Network",
+              info: network.name,
+              icon: network.icon,
+              type: network),
+        ],
       ),
     );
   }

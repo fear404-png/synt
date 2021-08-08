@@ -4,7 +4,6 @@ import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
 import 'package:synt/until/app_font_style.dart';
 import 'package:synt/until/app_paddings.dart';
-import 'package:synt/until/global_params.dart';
 
 //система монитор лист, ну типо
 class SystemMonitorList extends StatefulWidget {
@@ -90,7 +89,6 @@ class _SystemMonitorListState extends State<SystemMonitorList> {
                     onTapCancel: () =>
                         setState(() => buttonColor = AppColors.background),
                     onTap: () {
-                      HardwareInfoType.type = widget.type;
                       Navigator.of(context).pushNamed(
                         "/main_screen/hardware_info",
                       );

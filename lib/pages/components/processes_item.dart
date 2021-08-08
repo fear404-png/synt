@@ -26,7 +26,7 @@ class ProcessesItemWidget extends StatelessWidget {
       builder: (context, state) {
         return Row(
           children: [
-            CustomContainer(
+            CustumContainer(
                 width: 60,
                 height: 60,
                 child: Icon(
@@ -36,7 +36,7 @@ class ProcessesItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center),
             AppPaddings.defaultSizedBoxWidth,
             Expanded(
-                child: CustomContainer(
+                child: CustumContainer(
               height: 60,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -57,7 +57,7 @@ class ProcessesItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
             )),
             AppPaddings.defaultSizedBoxWidth,
-            CustomContainer(
+            CustumContainer(
                 width: 60,
                 height: 60,
                 child: state.itemsRun.length <= index

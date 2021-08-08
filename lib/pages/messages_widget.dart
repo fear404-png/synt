@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
+
+import 'package:synt/blocs/main_logic.dart';
 import 'package:synt/blocs/processes_bloc/processes_bloc.dart';
+import 'package:synt/blocs/user_bloc/user_bloc.dart';
 import 'package:synt/theme/app_colors.dart';
 
 class MessagesWidget extends StatelessWidget {
@@ -15,15 +17,12 @@ class MessagesWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            BlocBuilder<AppbarBloc, AppbarState>(
-              builder: (context, state) {
-                return TextButton(
-                    onPressed: () {
-                      BlocProvider.of<AppbarBloc>(context).add(AddBtc(10000));
-                    },
-                    child: Text("Добавить 10000 битков, уже ${state.btc}"));
-              },
-            ),
+            TextButton(
+                onPressed: () {
+                  MainLogic.addBtc(context, 10000);
+                },
+                child: Text(
+                    "Добавить 10000 битков, уже ${BlocProvider.of<UserBloc>(context).state.publicBalance}")),
             BlocProvider(
               create: (context) => ProcessesBloc(),
               child: BlocBuilder<ProcessesBloc, ProcessesState>(

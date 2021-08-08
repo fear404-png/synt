@@ -21,13 +21,13 @@ abstract class AppContainersDecoration {
 }
 
 //кстомные контейнеры
-class CustomContainer extends StatelessWidget {
+class CustumContainer extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? height;
   Color? color = AppColors.background;
   final CrossAxisAlignment crossAxisAlignment;
-  CustomContainer(
+  CustumContainer(
       {Key? key,
       required this.child,
       this.width,
@@ -45,7 +45,7 @@ class CustomContainer extends StatelessWidget {
       height: height,
       color: color,
       child: Column(
-        crossAxisAlignment: this.crossAxisAlignment,
+        crossAxisAlignment:  this.crossAxisAlignment,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(

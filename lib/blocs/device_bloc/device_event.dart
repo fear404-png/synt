@@ -3,26 +3,22 @@ part of 'device_bloc.dart';
 @immutable
 abstract class DeviceEvent {}
 
-class ChangeRam extends DeviceEvent {
-  final RAM ram;
+class SetInstalledItem extends DeviceEvent {
+  final dynamic item;
 
-  ChangeRam(this.ram);
+  SetInstalledItem(this.item);
 }
 
-class ChangeMemory extends DeviceEvent {
-  final Memory memory;
+class AddUsedResource extends DeviceEvent {
+  final double resource;
+  final String type;
 
-  ChangeMemory(this.memory);
+  AddUsedResource(this.resource, this.type);
 }
 
-class ChangeCpu extends DeviceEvent {
-  final CPU cpu;
+class RemoveUsedResource extends DeviceEvent {
+  final double resource;
+  final String type;
 
-  ChangeCpu(this.cpu);
-}
-
-class ChangeNetwork extends DeviceEvent {
-  final Network network;
-
-  ChangeNetwork(this.network);
+  RemoveUsedResource(this.resource, this.type);
 }

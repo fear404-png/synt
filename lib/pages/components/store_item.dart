@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:synt/blocs/appbar_bloc/appbar_bloc.dart';
+import 'package:synt/blocs/main_logic.dart';
 import 'package:synt/blocs/store_bloc/store_bloc.dart';
-import 'package:synt/data/data.dart';
+
 
 import 'package:synt/pages/main_screen_widget.dart';
 import 'package:synt/theme/app_colors.dart';
@@ -41,7 +41,7 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          CustomContainer(
+          CustumContainer(
             crossAxisAlignment: CrossAxisAlignment.center,
             width: 45,
             height: 45,
@@ -49,7 +49,7 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
           ),
           AppPaddings.defaultSizedBoxWidth,
           Expanded(
-              child: CustomContainer(
+              child: CustumContainer(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -73,31 +73,12 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
           AppPaddings.defaultSizedBoxWidth,
           GestureDetector(
             onTap: () {
-              if (UserData.userData.btc >= widget.price) {
-                BlocProvider.of<StoreBloc>(context).add(BuyItem(widget.type));
-                BlocProvider.of<AppbarBloc>(context)
-                    .add(RemoveBtc(widget.price));
-                Scaffold.of(context).showSnackBar(SnackBar(
-                    duration: const Duration(milliseconds: 2200),
-                    backgroundColor: AppColors.background,
-                    content: Text(
-                      "You have purchased a ${widget.title} for ${widget.price} btc",
-                      style: AppTextStyle.textStyleHeader,
-                    )));
-              } else {
-                Scaffold.of(context).showSnackBar(const SnackBar(
-                    duration: Duration(milliseconds: 600),
-                    backgroundColor: AppColors.background,
-                    content: Text(
-                      "Not enough money",
-                      style: AppTextStyle.textStyleHeader,
-                    )));
-              }
+              MainLogic.buyItem(context, widget.type);
             },
             onTapDown: (TapDownDetails t) => setState(() => isNotPress = false),
             onTapUp: (TapUpDetails t) => setState(() => isNotPress = true),
             onTapCancel: () => setState(() => isNotPress = true),
-            child: CustomContainer(
+            child: CustumContainer(
                 color: isNotPress ? AppColors.background : AppColors.accent,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 child: Container(
@@ -118,4 +99,199 @@ class _StoreItemWidgetState extends State<StoreItemWidget> {
   }
 }
 
-class AddBtc {}
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+//// Жил ежик. Наступила осень. Ежик залез в свое дупло. Ежик сдох.

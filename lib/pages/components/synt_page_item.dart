@@ -33,7 +33,7 @@ class _SyntPageItemState extends State<SyntPageItem> {
         onTapCancel: () => setState(() => isNotPress = true),
         child: Row(
           children: [
-            CustomContainer(
+            CustumContainer(
                 color: isNotPress ? AppColors.background : AppColors.accent,
                 width: isNotPress ? 45 : 35,
                 height: 45,
@@ -41,7 +41,7 @@ class _SyntPageItemState extends State<SyntPageItem> {
                 crossAxisAlignment: CrossAxisAlignment.center),
             isNotPress ? AppPaddings.defaultSizedBoxWidth : SizedBox(),
             Expanded(
-                child: CustomContainer(
+                child: CustumContainer(
               color: isNotPress ? AppColors.background : AppColors.accent,
               height: 45,
               child: Text(
@@ -53,7 +53,7 @@ class _SyntPageItemState extends State<SyntPageItem> {
               crossAxisAlignment: CrossAxisAlignment.center,
             )),
             isNotPress ? AppPaddings.defaultSizedBoxWidth : SizedBox(),
-            CustomContainer(
+            CustumContainer(
                 color: isNotPress ? AppColors.background : AppColors.accent,
                 width: isNotPress ? 45 : 35,
                 height: 45,

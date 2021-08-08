@@ -23,14 +23,14 @@ class AppsItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
-          CustomContainer(
+          CustumContainer(
               width: 45,
               height: 45,
               child: icon,
               crossAxisAlignment: CrossAxisAlignment.center),
           AppPaddings.defaultSizedBoxWidth,
           Expanded(
-              child: CustomContainer(
+              child: CustumContainer(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),

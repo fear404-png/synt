@@ -88,5 +88,8 @@ flutter:
       fonts:
         - asset: assets/fonts/Inconsola-Regular.otf
         - asset: assets/fonts/Inconsola-Bold.otf
+    - family:  CustumIcons
+      fonts:
+        - asset: assets/fonts/CustumIcons.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

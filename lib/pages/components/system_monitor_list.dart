@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:synt/blocs/main_logic.dart';
 
 import 'package:synt/theme/app_colors.dart';
 import 'package:synt/until/app_containers.dart';
@@ -89,6 +90,9 @@ class _SystemMonitorListState extends State<SystemMonitorList> {
                     onTapCancel: () =>
                         setState(() => buttonColor = AppColors.background),
                     onTap: () {
+                      MainLogic.showOnlyOneTypeHardwareInventory(
+                          context, widget.type);
+
                       Navigator.of(context).pushNamed(
                         "/main_screen/hardware_info",
                       );

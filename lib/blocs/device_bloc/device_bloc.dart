@@ -13,10 +13,10 @@ class DeviceBloc extends Bloc<DeviceEvent, DeviceState> {
   static double _usedCpu = 0;
   static double _usedNetwork = 0;
 
-  static RAM _installedRam = RAM("default", "default", 0, 0);
-  static Memory _installedMemory = Memory("default", "default", 0, 0);
-  static CPU _installedCpu = CPU("default", "default", 0, 0);
-  static Network _installedNetwork = Network("default", "default", 0, 0);
+  static RAM _installedRam = RAM("default", 500, 2);
+  static Memory _installedMemory = Memory("default", 500, 256);
+  static CPU _installedCpu = CPU("default", 500, 2);
+  static Network _installedNetwork = Network("default", 500, 5);
 
   DeviceBloc()
       : super(DeviceInitial(_usedMemory, _usedRam, _usedCpu, _usedNetwork,

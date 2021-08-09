@@ -21,8 +21,7 @@ class MessagesWidget extends StatelessWidget {
                 onPressed: () {
                   MainLogic.addBtc(context, 10000);
                 },
-                child: Text(
-                    "Добавить 10000 битков, уже ${BlocProvider.of<UserBloc>(context).state.publicBalance}")),
+                child: Text("Добавить 10000 битков")),
             BlocProvider(
               create: (context) => ProcessesBloc(),
               child: BlocBuilder<ProcessesBloc, ProcessesState>(

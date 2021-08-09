@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:synt/theme/app_colors.dart';
 
- class Hardware {
+class Hardware {
   final String name;
   final String description;
   final int price;
@@ -17,14 +17,13 @@ import 'package:synt/theme/app_colors.dart';
 }
 
 class RAM extends Hardware {
-  final String name;
   final String description;
   final int price;
   final double props;
 
-  RAM(this.name, this.description, this.price, this.props)
+  RAM(this.description, this.price, this.props)
       : super(
-            name: name,
+            name: "RAM $props GB",
             description: description,
             price: price,
             props: props,
@@ -32,14 +31,13 @@ class RAM extends Hardware {
 }
 
 class Memory extends Hardware {
-  final String name;
   final String description;
   final int price;
   final double props;
 
-  Memory(this.name, this.description, this.price, this.props)
+  Memory(this.description, this.price, this.props)
       : super(
-            name: name,
+            name: "Memory $props GB",
             description: description,
             price: price,
             props: props,
@@ -47,14 +45,13 @@ class Memory extends Hardware {
 }
 
 class Network extends Hardware {
-  final String name;
   final String description;
   final int price;
   final double props;
 
-  Network(this.name, this.description, this.price, this.props)
+  Network(this.description, this.price, this.props)
       : super(
-            name: name,
+            name: "Network $props Mbit/s",
             description: description,
             price: price,
             props: props,
@@ -62,14 +59,13 @@ class Network extends Hardware {
 }
 
 class CPU extends Hardware {
-  final String name;
   final String description;
   final int price;
   final double props;
 
-  CPU(this.name, this.description, this.price, this.props)
+  CPU(this.description, this.price, this.props)
       : super(
-            name: name,
+            name: "CPU $props GFLOPS",
             description: description,
             price: price,
             props: props,

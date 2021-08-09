@@ -10,8 +10,64 @@ part 'store_state.dart';
 
 class StoreBloc extends Bloc<StoreEvent, StoreState> {
   //айтемы магазина
-  static List<Software> _softwareItems = [];
-  static List<Hardware> _hardwareItems = [];
+  static List<Software> _softwareItems = [
+    Spyware(
+        description: "description",
+        price: 1000,
+        lvl: 1,
+        ram: 0.2,
+        memory: 0.25,
+        network: 0.5),
+    Firewall(
+        description: "description",
+        price: 800,
+        lvl: 1,
+        ram: 0.1,
+        memory: 0.08,
+        network: 0.5),
+    Spam(
+        description: "description",
+        price: 300,
+        lvl: 1,
+        ram: 0.42,
+        memory: 0.03,
+        network: 2),
+    PasswordCracker(
+        description: "description",
+        price: 2800,
+        lvl: 1,
+        ram: 1.5,
+        memory: 1.3,
+        network: 3),
+    PasswordEncryptor(
+        description: "description",
+        price: 2100,
+        lvl: 1,
+        ram: 0.1,
+        memory: 0.3,
+        network: 0.01),
+    Antivirus(
+        description: "description",
+        price: 3500,
+        lvl: 1,
+        ram: 0.8,
+        memory: 2.3,
+        network: 0.9),
+  ];
+  static List<Hardware> _hardwareItems = [
+    RAM("description", 8000, 4),
+    RAM("description", 21000, 8),
+    RAM("description", 53000, 16),
+    Memory("description", 4200, 512),
+    Memory("description", 9500, 1024),
+    Memory("description", 35000, 2048),
+    CPU("description", 50000, 5),
+    CPU("description", 150000, 10),
+    CPU("description", 450000, 15),
+    Network("description", 1200, 10),
+    Network("description", 3400, 50),
+    Network("description", 6700, 100),
+  ];
   //айтемы одной категории
   static List<Software> _onlyOneTypeSoftwareItems = [];
   static List<Hardware> _onlyOneTypeHardwareItems = [];

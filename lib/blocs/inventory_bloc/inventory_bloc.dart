@@ -38,8 +38,10 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
       }
     } else if (event is InventorySetOnlyOneTypeHardwareItems) {
       _onlyOneTypeHardwareItems = [];
+
       for (var element in _hardwareItems) {
         if (element.toString() == event.hardware.toString()) {
+          print(element.name);
           _onlyOneTypeHardwareItems.add(element);
         }
       }
@@ -48,7 +50,7 @@ class InventoryBloc extends Bloc<InventoryEvent, InventoryState> {
     } else if (event is InventorySetSoftItems) {
       _softwareItems = event.softwareItems;
     }
-    InventoryInitial(_softwareItems, _hardwareItems, _onlyOneTypeSoftwareItems,
-        _onlyOneTypeHardwareItems);
+    yield InventoryInitial(_softwareItems, _hardwareItems,
+        _onlyOneTypeSoftwareItems, _onlyOneTypeHardwareItems);
   }
 }

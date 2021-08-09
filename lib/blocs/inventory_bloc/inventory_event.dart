@@ -34,7 +34,7 @@ class InventorySetOnlyOneTypeSoftwareItems extends InventoryEvent {
 }
 
 class InventorySetOnlyOneTypeHardwareItems extends InventoryEvent {
-  final Hardware hardware;
+  final dynamic hardware;
 
   InventorySetOnlyOneTypeHardwareItems(this.hardware);
 }

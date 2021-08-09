@@ -9,7 +9,7 @@ import 'store_item.dart';
 
 //лист с айтемами
 class StoreItemsSoftwareWidget extends StatelessWidget {
- const StoreItemsSoftwareWidget({
+  const StoreItemsSoftwareWidget({
     Key? key,
   }) : super(key: key);
 
@@ -20,22 +20,26 @@ class StoreItemsSoftwareWidget extends StatelessWidget {
 
         Padding(
             padding: AppPaddings.defaultPadding,
-            child: ListView.builder(
-                itemCount: BlocProvider.of<StoreBloc>(context)
-                    .state
-                    .softwareItems
-                    .length,
-                itemBuilder: (context, index) {
-                  final item = BlocProvider.of<StoreBloc>(context)
-                      .state
-                      .softwareItems[index];
+            child: BlocBuilder<StoreBloc, StoreState>(
+              builder: (context, state) {
+                return ListView.builder(
+                    itemCount: BlocProvider.of<StoreBloc>(context)
+                        .state
+                        .softwareItems
+                        .length,
+                    itemBuilder: (context, index) {
+                      final item = BlocProvider.of<StoreBloc>(context)
+                          .state
+                          .softwareItems[index];
 
-                  return StoreItemWidget(
-                      icon: item.icon,
-                      title: item.name,
-                      description: item.description,
-                      price: item.price,
-                      type: item);
-                }));
+                      return StoreItemWidget(
+                          icon: item.icon,
+                          title: item.name,
+                          description: item.description,
+                          price: item.price,
+                          type: item);
+                    });
+              },
+            ));
   }
 }

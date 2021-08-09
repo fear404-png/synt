@@ -69,18 +69,22 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "${BlocProvider.of<UserBloc>(context).state.publicBalance} BTC",
-              style: AppTextStyle.textStyleHeader,
-            ),
-            Text(
-              BlocProvider.of<UserBloc>(context).state.ip,
-              style: AppTextStyle.textStyleHeader,
-            )
-          ],
+        title: BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${BlocProvider.of<UserBloc>(context).state.publicBalance} BTC",
+                  style: AppTextStyle.textStyleHeader,
+                ),
+                Text(
+                  BlocProvider.of<UserBloc>(context).state.ip,
+                  style: AppTextStyle.textStyleHeader,
+                )
+              ],
+            );
+          },
         ),
         backgroundColor: AppColors.background,
       ),

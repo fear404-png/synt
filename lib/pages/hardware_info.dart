@@ -16,43 +16,38 @@ class HardwareInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => InventoryBloc()),
-        BlocProvider(create: (context) => DeviceBloc())
-      ],
-      child: Scaffold(
-          appBar: AppBar(
-            foregroundColor: AppColors.accent,
-          ),
-          backgroundColor: AppColors.background,
-          body: Padding(
-            padding: AppPaddings.defaultPadding,
-            child: ListView.builder(
-                itemCount: BlocProvider.of<InventoryBloc>(context)
-                    .state
-                    .onlyOneTypeHardwareItems
-                    .length,
-                itemBuilder: (context, index) {
-                  Hardware item = BlocProvider.of<InventoryBloc>(context)
-                      .state
-                      .onlyOneTypeHardwareItems[index];
+    return Scaffold(
+      appBar: AppBar(
+        foregroundColor: AppColors.accent,
+      ),
+      backgroundColor: AppColors.background,
+      body: Padding(
+        padding: AppPaddings.defaultPadding,
+        child: ListView.builder(
+            itemCount: BlocProvider.of<InventoryBloc>(context)
+                .state
+                .onlyOneTypeHardwareItems
+                .length,
+            itemBuilder: (context, index) {
+              Hardware item = BlocProvider.of<InventoryBloc>(context)
+                  .state
+                  .onlyOneTypeHardwareItems[index];
 
-                  return GestureDetector(
-                    onTap: () {
-                      MainLogic.setInstalledHardware(context, item);
+              return GestureDetector(
+                onTap: () {
+                  MainLogic.setInstalledHardware(context, item);
 
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/main_screen', (Route<dynamic> route) => false);
-                    },
-                    child: InventoryItem(
-                      description: item.description,
-                      name: item.name,
-                      icon: item.icon,
-                    ),
-                  );
-                }),
-          )),
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/main_screen', (Route<dynamic> route) => false);
+                },
+                child: InventoryItem(
+                  description: item.description,
+                  name: item.name,
+                  icon: item.icon,
+                ),
+              );
+            }),
+      ),
     );
   }
 }

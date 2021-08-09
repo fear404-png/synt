@@ -19,7 +19,7 @@ class ProcessesWidget extends StatelessWidget {
       child: Padding(
         padding: AppPaddings.defaultPadding,
         child: Column(
-          children: [
+          children: const [
             ProcessesTitle(),
             AppPaddings.defaultSizedBoxHeight,
             Expanded(child: ProcessesItemsWidget())
